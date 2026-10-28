@@ -1,0 +1,425 @@
+{
+ "note": "couleurs lineaires (espace Linear Unity)",
+ "materials": [
+  {
+   "name": "MGSUGE_Vesper_Frame",
+   "role": "Frame",
+   "baseColor": {
+    "r": 0.18447498977184296,
+    "g": 0.20507873594760895,
+    "b": 0.22696587443351746,
+    "a": 1.0
+   },
+   "metallic": 0.8500000238418579,
+   "roughness": 0.3499999940395355,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Armor",
+   "role": "Armor",
+   "baseColor": {
+    "r": 0.9320873022079468,
+    "g": 0.9656899571418762,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.44999998807907104,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Armor_Armure_Charbon",
+   "role": "Armor",
+   "baseColor": {
+    "r": 0.4844050407409668,
+    "g": 0.45642542839050293,
+    "b": 0.46491923928260803,
+    "a": 1.0
+   },
+   "metallic": 0.25,
+   "roughness": 0.47999998927116394,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Frame_Articulation_Noir",
+   "role": "Frame",
+   "baseColor": {
+    "r": 0.017999999225139618,
+    "g": 0.017999999225139618,
+    "b": 0.019999999552965164,
+    "a": 1.0
+   },
+   "metallic": 0.30000001192092896,
+   "roughness": 0.550000011920929,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Frame_Serie",
+   "role": "Frame",
+   "baseColor": {
+    "r": 0.2500939965248108,
+    "g": 0.2427765130996704,
+    "b": 0.2855646312236786,
+    "a": 1.0
+   },
+   "metallic": 0.10000000149011612,
+   "roughness": 0.36000001430511475,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Glow",
+   "role": "Glow",
+   "baseColor": {
+    "r": 0.8962417840957642,
+    "g": 0.2922949492931366,
+    "b": 0.0012773831840604544,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.30000001192092896,
+   "emissionColor": {
+    "r": 0.8962693810462952,
+    "g": 0.32314321398735046,
+    "b": 0.017641954123973846,
+    "a": 1.0
+   },
+   "emissionStrength": 8.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Frame_Armure_Gris_Secondaire",
+   "role": "Frame",
+   "baseColor": {
+    "r": 0.08310656249523163,
+    "g": 0.08397779613733292,
+    "b": 0.07951682806015015,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.5,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Accent",
+   "role": "Accent",
+   "baseColor": {
+    "r": 0.9924545288085938,
+    "g": 0.2656862437725067,
+    "b": 0.0,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.3799999952316284,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Visor",
+   "role": "Visor",
+   "baseColor": {
+    "r": 0.8962417840957642,
+    "g": 0.2922949492931366,
+    "b": 0.0012773831840604544,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.30000001192092896,
+   "emissionColor": {
+    "r": 0.8962693810462952,
+    "g": 0.32314321398735046,
+    "b": 0.017641954123973846,
+    "a": 1.0
+   },
+   "emissionStrength": 8.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Armor_White",
+   "role": "Armor",
+   "baseColor": {
+    "r": 0.6180546283721924,
+    "g": 0.6180546283721924,
+    "b": 0.6180546283721924,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.5,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Glow_Feux_Orange",
+   "role": "Glow",
+   "baseColor": {
+    "r": 0.8962693810462952,
+    "g": 0.32314321398735046,
+    "b": 0.017641954123973846,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.30000001192092896,
+   "emissionColor": {
+    "r": 0.8962693810462952,
+    "g": 0.32314321398735046,
+    "b": 0.017641954123973846,
+    "a": 1.0
+   },
+   "emissionStrength": 4.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Frame_Chrome_Piston",
+   "role": "Frame",
+   "baseColor": {
+    "r": 0.800000011920929,
+    "g": 0.8100000023841858,
+    "b": 0.8299999833106995,
+    "a": 1.0
+   },
+   "metallic": 1.0,
+   "roughness": 0.11999999731779099,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Accent_Accent_Orange_Tech",
+   "role": "Accent",
+   "baseColor": {
+    "r": 0.8962584733963013,
+    "g": 0.16186533868312836,
+    "b": 0.0002866888535209,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.4000000059604645,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Glow_Propulseur_Interieur",
+   "role": "Glow",
+   "baseColor": {
+    "r": 0.046083200722932816,
+    "g": 0.05131051689386368,
+    "b": 0.6997526288032532,
+    "a": 1.0
+   },
+   "metallic": 0.6000000238418579,
+   "roughness": 0.5,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 0.3499999940395355,
+    "b": 0.07999999821186066,
+    "a": 1.0
+   },
+   "emissionStrength": 1.2000000476837158,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Frame_Ailettes_Dorsales",
+   "role": "Frame",
+   "baseColor": {
+    "r": 0.20640158653259277,
+    "g": 0.194853276014328,
+    "b": 0.1913967728614807,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.44999998807907104,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Visor_Emission_Rouge",
+   "role": "Visor",
+   "baseColor": {
+    "r": 1.0,
+    "g": 0.0,
+    "b": 0.022632218897342682,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.30000001192092896,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 0.03999999910593033,
+    "b": 0.029999999329447746,
+    "a": 1.0
+   },
+   "emissionStrength": 5.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Accent_Blue",
+   "role": "Accent",
+   "baseColor": {
+    "r": 0.07280266284942627,
+    "g": 0.1056140810251236,
+    "b": 0.8000074625015259,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.5,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Armor_Whitywhite",
+   "role": "Armor",
+   "baseColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.5,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Armor_Material",
+   "role": "Armor",
+   "baseColor": {
+    "r": 0.6280863881111145,
+    "g": 0.8000156879425049,
+    "b": 0.6414747834205627,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.5,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 1.0
+   },
+   "emissionStrength": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "MGSUGE_Vesper_Flame",
+   "role": "Flame",
+   "baseColor": {
+    "r": 1.0,
+    "g": 0.5394794940948486,
+    "b": 0.1946178376674652,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.4000000059604645,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 0.5394794940948486,
+    "b": 0.1946178376674652,
+    "a": 1.0
+   },
+   "emissionStrength": 6.0,
+   "alpha": 0.8500000238418579
+  },
+  {
+   "name": "MGSUGE_Vesper_Blade",
+   "role": "Blade",
+   "baseColor": {
+    "r": 0.8962693810462952,
+    "g": 0.32314321398735046,
+    "b": 0.017641954123973846,
+    "a": 1.0
+   },
+   "metallic": 0.0,
+   "roughness": 0.20000000298023224,
+   "emissionColor": {
+    "r": 1.0,
+    "g": 0.4507857859134674,
+    "b": 0.06301001459360123,
+    "a": 1.0
+   },
+   "emissionStrength": 14.0,
+   "alpha": 0.6499999761581421
+  }
+ ]
+}

@@ -1,0 +1,4 @@
+Deposer ici la carte de hauteurs exportee du prototype HTML (cahier des charges, partie 6.3) :
+  heightmap_513_min<min>_max<max>.raw   (16 bits, ordre des octets Windows, 513 x 513)
+puis renseigner son nom dans Assets/_MGSUGE/Data/MGSUGE_World -> Heightmap File.
+Sans ce fichier, le jeu utilise le terrain provisoire genere par ProceduralTerrain.cs.

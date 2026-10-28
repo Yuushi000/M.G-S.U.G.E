@@ -1,0 +1,1675 @@
+{
+ "space": "Unity, espace modele (X droite, Y haut, Z avant), decalages relatifs a la pose de liaison",
+ "scale": 0.61607819425079,
+ "frameClear": 7.0,
+ "poses": [
+  {
+   "name": "Mech",
+   "bones": [
+    {
+     "bone": "Shoulder_R",
+     "hasRot": true,
+     "rot": {
+      "x": -0.24117614328861237,
+      "y": -0.018980976194143295,
+      "z": 0.0761285349726677,
+      "w": 0.9673046469688416
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Elbow_R",
+     "hasRot": true,
+     "rot": {
+      "x": -0.5150380730628967,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.8571673631668091
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Hand_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.7071067690849304,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.7071067690849304
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Shoulder_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.13864350318908691,
+      "y": 0.012129733338952065,
+      "z": -0.08630754798650742,
+      "w": 0.9864998459815979
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Elbow_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.43837109208106995,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.8987941145896912
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Hand_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.1736481636762619,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.9848077893257141
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Thumb1_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.2164396345615387,
+      "w": 0.976296067237854
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Thumb1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.1736481636762619,
+      "w": 0.9848077893257141
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Index1_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.659345805644989,
+      "w": 0.751839816570282
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Index2_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.5555703043937683,
+      "w": 0.8314696550369263
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Middle1_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.659345805644989,
+      "w": 0.751839816570282
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Middle2_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.5555703043937683,
+      "w": 0.8314696550369263
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ring1_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.659345805644989,
+      "w": 0.751839816570282
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ring2_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.5555703043937683,
+      "w": 0.8314696550369263
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Little1_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.659345805644989,
+      "w": 0.751839816570282
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Little2_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.5555703043937683,
+      "w": 0.8314696550369263
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Index1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Index2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Middle1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Middle2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ring1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ring2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Little1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Little2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Nose",
+     "hasRot": false,
+     "rot": {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": true,
+     "scale": 0.0
+    }
+   ]
+  },
+  {
+   "name": "Ship",
+   "bones": [
+    {
+     "bone": "Body",
+     "hasRot": true,
+     "rot": {
+      "x": 0.7071067690849304,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.7071067690849304
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Hip_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.03489949554204941,
+      "w": 0.9993908405303955
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Hip_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.03489949554204941,
+      "w": 0.9993908405303955
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ankle_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.7071067690849304,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.7071067690849304
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ankle_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.7071067690849304,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.7071067690849304
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Shoulder_R",
+     "hasRot": true,
+     "rot": {
+      "x": -0.9975640177726746,
+      "y": -0.0,
+      "z": -0.0,
+      "w": 0.06975651532411575
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Shoulder_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.9975640177726746,
+      "y": -0.0,
+      "z": -0.0,
+      "w": 0.06975651532411575
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Hand_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.6560591459274292,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.7547095417976379
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Hand_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 1.0
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Index1_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.659345805644989,
+      "w": 0.751839816570282
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Index2_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.5555703043937683,
+      "w": 0.8314696550369263
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Middle1_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.659345805644989,
+      "w": 0.751839816570282
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Middle2_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.5555703043937683,
+      "w": 0.8314696550369263
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ring1_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.659345805644989,
+      "w": 0.751839816570282
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ring2_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.5555703043937683,
+      "w": 0.8314696550369263
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Little1_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.659345805644989,
+      "w": 0.751839816570282
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Little2_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": -0.5555703043937683,
+      "w": 0.8314696550369263
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Index1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Index2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Middle1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Middle2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ring1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ring2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Little1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Little2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Wing_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.8567866683006287,
+      "y": 0.4460149109363556,
+      "z": -0.11950934678316116,
+      "w": 0.22957533597946167
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Wing_R",
+     "hasRot": true,
+     "rot": {
+      "x": -0.8567866683006287,
+      "y": -0.4460149109363556,
+      "z": 0.11950934678316116,
+      "w": 0.22957533597946167
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Skirt_Front_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.2164396345615387,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.976296067237854
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Skirt_Front_R",
+     "hasRot": true,
+     "rot": {
+      "x": -0.2164396345615387,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.976296067237854
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Head",
+     "hasRot": false,
+     "rot": {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+     },
+     "hasPos": true,
+     "pos": {
+      "x": -0.0,
+      "y": -0.6776860356330872,
+      "z": 0.18482346832752228
+     },
+     "hasScale": true,
+     "scale": 0.72
+    },
+    {
+     "bone": "Nose",
+     "hasRot": false,
+     "rot": {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": true,
+     "scale": 1.0
+    }
+   ]
+  },
+  {
+   "name": "Crouch",
+   "bones": [
+    {
+     "bone": "Body",
+     "hasRot": false,
+     "rot": {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+     },
+     "hasPos": true,
+     "pos": {
+      "x": -0.0,
+      "y": -1.100000023841858,
+      "z": -0.0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Torso",
+     "hasRot": true,
+     "rot": {
+      "x": 0.08715573698282242,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.9961947798728943
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Hip_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.3254565894603729,
+      "y": 0.008522380143404007,
+      "z": -0.024750791490077972,
+      "w": 0.9451946020126343
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Hip_R",
+     "hasRot": true,
+     "rot": {
+      "x": -0.3254565894603729,
+      "y": -0.008522380143404007,
+      "z": 0.024750791490077972,
+      "w": 0.9451946020126343
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Knee_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.5877853035926819,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.80901700258255
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Knee_R",
+     "hasRot": true,
+     "rot": {
+      "x": 0.5877853035926819,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.80901700258255
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ankle_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.2923716902732849,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.9563047885894775
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ankle_R",
+     "hasRot": true,
+     "rot": {
+      "x": -0.2923716902732849,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.9563047885894775
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Skirt_Front_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.24192194640636444,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.9702957272529602
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Skirt_Front_R",
+     "hasRot": true,
+     "rot": {
+      "x": -0.24192194640636444,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.9702957272529602
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    }
+   ]
+  },
+  {
+   "name": "BladeRaise",
+   "bones": [
+    {
+     "bone": "Torso",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": -0.15643446147441864,
+      "z": 0.0,
+      "w": 0.9876883029937744
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Shoulder_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.9576622247695923,
+      "y": 0.12607862055301666,
+      "z": -0.03378266468644142,
+      "w": 0.2566048204898834
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Elbow_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.30070579051971436,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.9537169933319092
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Hand_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.1736481636762619,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.9848077893257141
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Index1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Index2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Middle1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Middle2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ring1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ring2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Little1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Little2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    }
+   ]
+  },
+  {
+   "name": "BladeSweep",
+   "bones": [
+    {
+     "bone": "Torso",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.1908089816570282,
+      "z": 0.0,
+      "w": 0.9816271662712097
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Shoulder_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.5399779677391052,
+      "y": 0.36632978916168213,
+      "z": 0.2810947299003601,
+      "w": 0.7037129998207092
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Elbow_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.08715573698282242,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.9961947798728943
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Hand_L",
+     "hasRot": true,
+     "rot": {
+      "x": -0.08715573698282242,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.9961947798728943
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Index1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Index2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Middle1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Middle2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ring1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Ring2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Little1_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.4186597466468811,
+      "w": 0.908143162727356
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    },
+    {
+     "bone": "Little2_L",
+     "hasRot": true,
+     "rot": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.3461170494556427,
+      "w": 0.9381913542747498
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    }
+   ]
+  },
+  {
+   "name": "LidOpen",
+   "bones": [
+    {
+     "bone": "Lid",
+     "hasRot": true,
+     "rot": {
+      "x": 0.2894277274608612,
+      "y": -0.05103389546275139,
+      "z": 0.5090368986129761,
+      "w": 0.8090170621871948
+     },
+     "hasPos": false,
+     "pos": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+     },
+     "hasScale": false,
+     "scale": 1.0
+    }
+   ]
+  }
+ ]
+}
