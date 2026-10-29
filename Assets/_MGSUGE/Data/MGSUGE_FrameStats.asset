@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d13d521ab543bb74a9405297951fcf30, type: 3}
+  m_Name: MGSUGE_FrameStats
+  m_EditorClassIdentifier: MGSUGE::MGSUGE.FrameStatsData
+  armor: 8200
+  energy: 1000
+  energyRegen: 420
+  regenDelay: 0.45
+  overheatTime: 1.6
+  overheatRecoveryMult: 1.5
+  walkSpeed: 34
+  airWalkFactor: 0.7
+  groundBoostSpeed: 72
+  airBoostSpeed: 70
+  ascentSpeed: 46
+  descentSpeed: 64.4
+  assaultBoostSpeed: 190
+  quickBoostSpeed: 150
+  quickBoostDuration: 0.24
+  quickBoostCooldown: 0.32
+  jumpSpeed: 84
+  jumpDuration: 0.22
+  jumpCooldown: 0.16
+  noEnergyJumpSpeed: 30
+  walkAccelGround: 9
+  walkAccelAir: 1.4
+  boostAccelGround: 6.5
+  boostAccelAir: 4
+  gravity: 64
+  airBoostGravityFactor: 0.16
+  airBoostMaxFall: 9
+  groundBoostCost: 55
+  airBoostCost: 140
+  ascentCost: 290
+  descentCost: 174
+  quickBoostCost: 220
+  jumpCost: 170
+  assaultBoostStartCost: 120
+  assaultBoostCost: 230
+  assaultBoostMinEnergy: 0.15
+  afterburnerCost: 170
+  shipMaxSpeed: 300
+  shipAfterburnerSpeed: 440
+  shipReverseSpeed: 70
+  shipStrafeSpeed: 90
+  shipAccel: 1.6
+  transformTime: 0.75
+  barrelRollImpulse: 172.5
+  barrelRollTime: 0.45
+  shipAutoLevelDelay: 0.9
+  shipAutoLevelRate: 1.4
+  shipArrowYaw: 1.8
+  shipArrowPitch: 1.5
+  shipDamageFactor: 0.9
+  shipSparkSpeed: 120
+  frameClear: 7
+  shipClear: 3.2
+  frameRadiusTop: 3.2
+  frameRadiusBottom: 2.3
+  frameBottomOffset: -4.7
+  shipRadius: 3.4
+  landingSpeed: 22
+  landingMaxCrouch: 1.1
+  walkLeanMax: 0.4
+  walkSideLeanMax: 0.3
+  turnRate: 8
+  repairKits: 3
+  repairAmount: 0.4
+  criticalArmor: 0.25
+  armorTrailRate: 0.22
+  deathDelay: 1.8
+  lavaDamage: 380
+  lavaDepth: -7

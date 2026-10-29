@@ -1,0 +1,221 @@
+fileFormatVersion: 2
+guid: 2d12c61b6aefacb428955fda429c2aed
+ModelImporter:
+  serializedVersion: 24600
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Accent
+    second: {fileID: 2100000, guid: 723b58e7e530a684bb2e6b0152920cab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Accent_Accent_Orange_Tech
+    second: {fileID: 2100000, guid: 0007e0ce15398f4499770123494be717, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Accent_Blue
+    second: {fileID: 2100000, guid: ca337e8d0f6604743855cc09b96a92f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Armor
+    second: {fileID: 2100000, guid: a8908fdfd6b173d42bfdbcc5459dc6b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Armor_Armure_Charbon
+    second: {fileID: 2100000, guid: 2bb85adde1d404646b9df3555f2072f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Armor_Material
+    second: {fileID: 2100000, guid: 8138976ca79a194489e3e909676a4c01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Armor_White
+    second: {fileID: 2100000, guid: 8d08e8b23fccff441b931a183680ec6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Armor_Whitywhite
+    second: {fileID: 2100000, guid: 3a85aba07a10cad478ac07a10ffcd791, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Blade
+    second: {fileID: 2100000, guid: 8aabaed1f3f0dc243bff51d3c99b158e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Flame
+    second: {fileID: 2100000, guid: 6aac2adda44d66a4db16524625c47f26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Frame
+    second: {fileID: 2100000, guid: f40a57a4e60df4942885cb95ae1d4038, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Frame_Ailettes_Dorsales
+    second: {fileID: 2100000, guid: dd358050f2c558748a6f6ee3d58f7715, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Frame_Armure_Gris_Secondaire
+    second: {fileID: 2100000, guid: f6a718df9dc4a8745bcbbdddb48e484a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Frame_Articulation_Noir
+    second: {fileID: 2100000, guid: 5df2779f95ebfcb4f856cae7c57c763b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Frame_Chrome_Piston
+    second: {fileID: 2100000, guid: 04c9ad3bc2861f0439d4721d14a0b0f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Frame_Serie
+    second: {fileID: 2100000, guid: 0b1857021fd4765469db7b4f245e904a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Glow
+    second: {fileID: 2100000, guid: b8b807560d50cc8429c441725d0b1b4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Glow_Feux_Orange
+    second: {fileID: 2100000, guid: 92f01f2fc05950040aae077730d41dc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Glow_Propulseur_Interieur
+    second: {fileID: 2100000, guid: c4955e4a4ddcd8a499d1ee3cd055c52c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Visor
+    second: {fileID: 2100000, guid: d0f89e8f893fa2b42ae6f80f616eabb9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MGSUGE_Vesper_Visor_Emission_Rouge
+    second: {fileID: 2100000, guid: f4a0c06e4f8012d418f94027b1abbbf2, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+    searchTexturesGlobally: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    preBakeConvexCollisionMesh: 0
+    preBakeTriangleCollisionMesh: 0
+    importPhysicalCameras: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    importUVs: -1
+    importVertexColors: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+    calculateBlendshapeNormalsDeltaFromImportedNormals: 0
+  referencedClips: []
+  importAnimation: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 0
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

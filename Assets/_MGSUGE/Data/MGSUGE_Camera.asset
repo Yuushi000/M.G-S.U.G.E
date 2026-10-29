@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d3b56b02cfac342838bcd99529ea60, type: 3}
+  m_Name: MGSUGE_Camera
+  m_EditorClassIdentifier: MGSUGE::MGSUGE.CameraData
+  mechDistance: 21
+  mechAssaultExtra: 5
+  mechSpeedExtra: 2
+  mechShoulder: 3.2
+  mechElevation: 5.2
+  mechLookHeight: 3.6
+  pitchMin: -1.15
+  pitchMax: 1.2
+  shipDistance: 26
+  shipElevation: 2.6
+  shipLookHeight: 1.5
+  shipSpeedFov: 12
+  shipFovSpeedStart: 150
+  shipFovSpeedFull: 440
+  fov: 72
+  assaultFov: 10
+  quickBoostFov: 6
+  jumpFov: 4
+  mouseSensitivity: 0.0023
+  arrowYaw: 1.8
+  arrowPitch: 1.5
+  groundClearance: 2.5
+  shakeDecay: 3
+  aimMin: 30
+  aimMax: 1200
+  relevelTime: 0.6
+  near: 1
+  far: 32000
+  shakeShot: 0.05
+  shakeQuickBoost: 0.35
+  shakeAssault: 0.5
+  shakeLandingMax: 0.6
+  shakeHit: 0.4

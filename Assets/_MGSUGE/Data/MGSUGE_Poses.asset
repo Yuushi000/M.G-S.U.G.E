@@ -1,0 +1,664 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c49eca5e1c81a488095f2286115633, type: 3}
+  m_Name: MGSUGE_Poses
+  m_EditorClassIdentifier: MGSUGE::MGSUGE.PoseLibrary
+  poses:
+  - name: Mech
+    bones:
+    - bone: Shoulder_R
+      hasRot: 1
+      rot: {x: -0.24117614, y: -0.018980976, z: 0.076128535, w: 0.96730465}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Elbow_R
+      hasRot: 1
+      rot: {x: -0.5150381, y: 0, z: 0, w: 0.85716736}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Hand_R
+      hasRot: 1
+      rot: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Shoulder_L
+      hasRot: 1
+      rot: {x: -0.1386435, y: 0.012129733, z: -0.08630755, w: 0.98649985}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Elbow_L
+      hasRot: 1
+      rot: {x: -0.4383711, y: 0, z: 0, w: 0.8987941}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Hand_L
+      hasRot: 1
+      rot: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Thumb1_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.21643963, w: 0.97629607}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Thumb1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.17364816, w: 0.9848078}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Index1_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.6593458, w: 0.7518398}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Index2_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.5555703, w: 0.83146966}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Middle1_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.6593458, w: 0.7518398}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Middle2_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.5555703, w: 0.83146966}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ring1_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.6593458, w: 0.7518398}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ring2_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.5555703, w: 0.83146966}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Little1_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.6593458, w: 0.7518398}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Little2_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.5555703, w: 0.83146966}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Index1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Index2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Middle1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Middle2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ring1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ring2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Little1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Little2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Nose
+      hasRot: 0
+      rot: {x: 0, y: 0, z: 0, w: 1}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 1
+      scale: 0
+  - name: Ship
+    bones:
+    - bone: Body
+      hasRot: 1
+      rot: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Hip_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.034899496, w: 0.99939084}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Hip_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.034899496, w: 0.99939084}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ankle_L
+      hasRot: 1
+      rot: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ankle_R
+      hasRot: 1
+      rot: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Shoulder_R
+      hasRot: 1
+      rot: {x: -0.997564, y: -0, z: -0, w: 0.069756515}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Shoulder_L
+      hasRot: 1
+      rot: {x: -0.997564, y: -0, z: -0, w: 0.069756515}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Hand_R
+      hasRot: 1
+      rot: {x: 0.65605915, y: 0, z: 0, w: 0.75470954}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Hand_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0, w: 1}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Index1_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.6593458, w: 0.7518398}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Index2_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.5555703, w: 0.83146966}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Middle1_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.6593458, w: 0.7518398}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Middle2_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.5555703, w: 0.83146966}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ring1_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.6593458, w: 0.7518398}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ring2_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.5555703, w: 0.83146966}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Little1_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.6593458, w: 0.7518398}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Little2_R
+      hasRot: 1
+      rot: {x: 0, y: 0, z: -0.5555703, w: 0.83146966}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Index1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Index2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Middle1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Middle2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ring1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ring2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Little1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Little2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Wing_L
+      hasRot: 1
+      rot: {x: -0.85678667, y: 0.4460149, z: -0.11950935, w: 0.22957534}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Wing_R
+      hasRot: 1
+      rot: {x: -0.85678667, y: -0.4460149, z: 0.11950935, w: 0.22957534}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Skirt_Front_L
+      hasRot: 1
+      rot: {x: -0.21643963, y: 0, z: 0, w: 0.97629607}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Skirt_Front_R
+      hasRot: 1
+      rot: {x: -0.21643963, y: 0, z: 0, w: 0.97629607}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Head
+      hasRot: 0
+      rot: {x: 0, y: 0, z: 0, w: 1}
+      hasPos: 1
+      pos: {x: -0, y: -0.67768604, z: 0.18482347}
+      hasScale: 1
+      scale: 0.72
+    - bone: Nose
+      hasRot: 0
+      rot: {x: 0, y: 0, z: 0, w: 1}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 1
+      scale: 1
+  - name: Crouch
+    bones:
+    - bone: Body
+      hasRot: 0
+      rot: {x: 0, y: 0, z: 0, w: 1}
+      hasPos: 1
+      pos: {x: -0, y: -1.1, z: -0}
+      hasScale: 0
+      scale: 1
+    - bone: Torso
+      hasRot: 1
+      rot: {x: 0.08715574, y: 0, z: 0, w: 0.9961948}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Hip_L
+      hasRot: 1
+      rot: {x: -0.3254566, y: 0.00852238, z: -0.024750791, w: 0.9451946}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Hip_R
+      hasRot: 1
+      rot: {x: -0.3254566, y: -0.00852238, z: 0.024750791, w: 0.9451946}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Knee_L
+      hasRot: 1
+      rot: {x: 0.5877853, y: 0, z: 0, w: 0.809017}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Knee_R
+      hasRot: 1
+      rot: {x: 0.5877853, y: 0, z: 0, w: 0.809017}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ankle_L
+      hasRot: 1
+      rot: {x: -0.2923717, y: 0, z: 0, w: 0.9563048}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ankle_R
+      hasRot: 1
+      rot: {x: -0.2923717, y: 0, z: 0, w: 0.9563048}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Skirt_Front_L
+      hasRot: 1
+      rot: {x: -0.24192195, y: 0, z: 0, w: 0.9702957}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Skirt_Front_R
+      hasRot: 1
+      rot: {x: -0.24192195, y: 0, z: 0, w: 0.9702957}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+  - name: BladeRaise
+    bones:
+    - bone: Torso
+      hasRot: 1
+      rot: {x: 0, y: -0.15643446, z: 0, w: 0.9876883}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Shoulder_L
+      hasRot: 1
+      rot: {x: -0.9576622, y: 0.12607862, z: -0.033782665, w: 0.25660482}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Elbow_L
+      hasRot: 1
+      rot: {x: -0.3007058, y: 0, z: 0, w: 0.953717}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Hand_L
+      hasRot: 1
+      rot: {x: -0.17364816, y: 0, z: 0, w: 0.9848078}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Index1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Index2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Middle1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Middle2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ring1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ring2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Little1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Little2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+  - name: BladeSweep
+    bones:
+    - bone: Torso
+      hasRot: 1
+      rot: {x: 0, y: 0.19080898, z: 0, w: 0.98162717}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Shoulder_L
+      hasRot: 1
+      rot: {x: -0.53997797, y: 0.3663298, z: 0.28109473, w: 0.703713}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Elbow_L
+      hasRot: 1
+      rot: {x: -0.08715574, y: 0, z: 0, w: 0.9961948}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Hand_L
+      hasRot: 1
+      rot: {x: -0.08715574, y: 0, z: 0, w: 0.9961948}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Index1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Index2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Middle1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Middle2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ring1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Ring2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Little1_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.41865975, w: 0.90814316}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+    - bone: Little2_L
+      hasRot: 1
+      rot: {x: 0, y: 0, z: 0.34611705, w: 0.93819135}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1
+  - name: LidOpen
+    bones:
+    - bone: Lid
+      hasRot: 1
+      rot: {x: 0.28942773, y: -0.051033895, z: 0.5090369, w: 0.80901706}
+      hasPos: 0
+      pos: {x: 0, y: 0, z: 0}
+      hasScale: 0
+      scale: 1

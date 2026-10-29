@@ -1,0 +1,42 @@
+# Dossiers générés par Unity (lourds, jamais à pousser)
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Fichiers générés par les éditeurs de code
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+
+# Fichiers temporaires Unity
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+sysinfo.txt
+*.apk
+*.aab
+*.unitypackage
+
+# Sauvegardes automatiques de Blender
+*.blend1
+*.blend2
+
+# Windows
+Thumbs.db
+Desktop.ini
+.DS_Store

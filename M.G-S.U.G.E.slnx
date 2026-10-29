@@ -1,0 +1,5 @@
+﻿<Solution>
+  <Project Path="MGSUGE.csproj" />
+  <Project Path="MGSUGE.Editor.csproj" />
+  <Project Path="MGSUGE.InputSystem.csproj" />
+</Solution>
