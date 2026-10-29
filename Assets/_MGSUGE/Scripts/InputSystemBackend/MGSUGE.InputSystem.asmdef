@@ -1,0 +1,25 @@
+{
+    "name": "MGSUGE.InputSystem",
+    "rootNamespace": "MGSUGE",
+    "references": [
+        "MGSUGE",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "MGSUGE_HAS_INPUT_SYSTEM"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "1.0.0",
+            "define": "MGSUGE_HAS_INPUT_SYSTEM"
+        }
+    ],
+    "noEngineReferences": false
+}

@@ -53,6 +53,18 @@ namespace MGSUGE.EditorTools
         [MenuItem("MGSUGE/2. Ouvrir la scene World", priority = 2)]
         public static void OpenWorld() { if (File.Exists(ScenePath)) EditorSceneManager.OpenScene(ScenePath); }
 
+        [MenuItem("MGSUGE/4. Tester le jeu (test automatique)", priority = 4)]
+        public static void RunAutoTest()
+        {
+            if (EditorApplication.isPlaying) { EditorApplication.isPlaying = false; return; }
+            if (!File.Exists(ScenePath)) BuildAll();
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            EditorSceneManager.OpenScene(ScenePath);
+            PlayerPrefs.SetInt(AutoTest.PrefKey, 1); PlayerPrefs.Save();
+            Debug.Log("[MGSUGE] Test automatique : environ 45 s. Rapport et captures dans Logs/AutoTest du projet.");
+            EditorApplication.isPlaying = true;
+        }
+
         [MenuItem("MGSUGE/3. Reimporter le chassis et les poses", priority = 3)]
         public static void ReimportModel()
         {
@@ -75,12 +87,42 @@ namespace MGSUGE.EditorTools
             PlayerSettings.colorSpace = ColorSpace.Linear;
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Standalone, "com.studio.mgsuge");
             Physics.IgnoreLayerCollision(Layers.Player, Layers.Enemy, false);
+            EnsureUrp();
             // ombres sur une grande distance (monde de 15 km)
             var assets = new List<RenderPipelineAsset>();
             if (GraphicsSettings.defaultRenderPipeline != null) assets.Add(GraphicsSettings.defaultRenderPipeline);
             for (int i = 0; i < QualitySettings.names.Length; i++) { var a = QualitySettings.GetRenderPipelineAssetAt(i); if (a != null) assets.Add(a); }
-            if (assets.Count == 0) Debug.LogError("[MGSUGE] Aucun pipeline URP actif : creez le projet avec le modele « Universal 3D ».");
-            foreach (var a in assets) if (a is UniversalRenderPipelineAsset u) { u.shadowDistance = 1500f; EditorUtility.SetDirty(u); }
+            foreach (var a in assets) if (a is UniversalRenderPipelineAsset u) { u.shadowDistance = 1500f; u.supportsHDR = true; EditorUtility.SetDirty(u); }
+        }
+
+        /// <summary>
+        /// Projet cree sans le modele « Universal 3D » : aucun pipeline n'est assigne et tous les materiaux URP s'affichent en magenta.
+        /// On cree alors un asset URP (avec Universal Renderer) et on l'assigne dans Graphics.
+        /// </summary>
+        static void EnsureUrp()
+        {
+            bool any = GraphicsSettings.defaultRenderPipeline is UniversalRenderPipelineAsset;
+            for (int i = 0; i < QualitySettings.names.Length && !any; i++) any = QualitySettings.GetRenderPipelineAssetAt(i) is UniversalRenderPipelineAsset;
+            if (any) return;
+            string dir = Root + "/Settings"; EnsureFolder(dir);
+            string assetPath = dir + "/MGSUGE_URP.asset", rendererPath = dir + "/MGSUGE_URP_Renderer.asset";
+            var urp = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(assetPath);
+            if (urp == null)
+            {
+                var rd = AssetDatabase.LoadAssetAtPath<UniversalRendererData>(rendererPath);
+                if (rd == null) { rd = ScriptableObject.CreateInstance<UniversalRendererData>(); AssetDatabase.CreateAsset(rd, rendererPath); }
+                urp = UniversalRenderPipelineAsset.Create(rd);
+                AssetDatabase.CreateAsset(urp, assetPath);
+                AssetDatabase.SaveAssets();
+            }
+            GraphicsSettings.defaultRenderPipeline = urp;
+            // les niveaux de qualite sans asset propre utilisent celui-ci ; on remplace ceux qui pointeraient vers un autre pipeline
+            int cur = QualitySettings.GetQualityLevel();
+            for (int i = 0; i < QualitySettings.names.Length; i++)
+                if (QualitySettings.GetRenderPipelineAssetAt(i) != null) { QualitySettings.SetQualityLevel(i, false); QualitySettings.renderPipeline = urp; }
+            QualitySettings.SetQualityLevel(cur, false);
+            AssetDatabase.SaveAssets();
+            Debug.Log("[MGSUGE] Pipeline URP cree et assigne : " + assetPath);
         }
 
         // ------------------------------------------------------------------ materiaux

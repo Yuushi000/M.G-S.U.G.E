@@ -22,6 +22,8 @@ namespace MGSUGE
         readonly List<P> pool = new List<P>();
         Mesh mesh; MaterialPropertyBlock mpb;
         public int ActiveCount { get; private set; }
+        /// <summary>Statistiques (diagnostic) : tirs du joueur par issue.</summary>
+        public int statFired, statTargets, statWorld, statGround, statExpired; public string statLastWorld = "";
 
         void Awake()
         {
@@ -42,6 +44,7 @@ namespace MGSUGE
             P p = null;
             foreach (var x in pool) if (!x.active) { p = x; break; }
             if (p == null) return false;
+            if (fromPlayer) statFired++;
             p.active = true; p.pos = pos; p.vel = vel; p.damage = damage; p.impact = impact; p.life = life; p.length = length;
             p.color = color; p.fromPlayer = fromPlayer; p.extraRadius = extraRadius;
             p.t.gameObject.SetActive(true);
@@ -84,7 +87,7 @@ namespace MGSUGE
                     {
                         Vector3 hp = Vector3.Lerp(a, b, bestT);
                         best.TakeDamage(new DamageInfo { amount = p.damage, impact = p.impact, point = hp, direction = p.vel.normalized, fromPlayer = true, source = this });
-                        Fx.Hit(hp, p.color); done = true;
+                        Fx.Hit(hp, p.color); done = true; statTargets++;
                     }
                 }
                 else if (player != null && !player.dead)
@@ -97,8 +100,9 @@ namespace MGSUGE
                     }
                 }
                 if (!done && Physics.Linecast(a, b, out RaycastHit h, Layers.WorldMask, QueryTriggerInteraction.Ignore))
-                { Fx.Hit(h.point, p.color); done = true; }
-                if (!done && b.y < TerrainSystem.Ground(b.x, b.z)) { Fx.Hit(b, p.color); done = true; }
+                { Fx.Hit(h.point, p.color); done = true; if (p.fromPlayer) { statWorld++; statLastWorld = h.collider != null ? h.collider.name : "?"; } }
+                if (!done && b.y < TerrainSystem.Ground(b.x, b.z)) { Fx.Hit(b, p.color); done = true; if (p.fromPlayer) statGround++; }
+                if (!done && p.life <= 0f && p.fromPlayer) statExpired++;
                 if (done || p.life <= 0f) { p.active = false; p.t.gameObject.SetActive(false); continue; }
                 p.pos = b; Place(p); count++;
             }

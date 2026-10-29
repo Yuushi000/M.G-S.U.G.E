@@ -7,10 +7,17 @@ Code : namespace `MGSUGE`, données dans des ScriptableObjects (`Assets/_MGSUGE/
 
 1. Unity Hub → **Nouveau projet** → **Unity 6 LTS (6000.x)** → modèle **« Universal 3D »** (URP + Input System inclus) → nom `MGSUGE`.
 2. Fermer Unity, copier le dossier `Assets/_MGSUGE` (et `Assets/StreamingAssets/MGSUGE`) de l'archive dans le dossier `Assets` du projet.
-3. Rouvrir le projet. Si Unity demande d'activer le nouvel Input System, accepter (redémarrage).
+3. Rouvrir le projet. **Package Input System** (recommandé par le cahier) : *Window > Package Manager > Unity Registry > Input System > Install*, puis accepter le redémarrage proposé.
+   Sans ce package, le projet compile quand même et utilise l'ancien Input Manager (ZQSD et WASD acceptés) ; il bascule tout seul sur l'Input System dès que le package est installé.
+   Si la console indique « Aucune entrée disponible », régler *Project Settings > Player > Active Input Handling* sur **Both**.
 4. Menu **MGSUGE → 1. Construire le projet (tout)**. Le constructeur crée les couches (Player, World, Enemy), règle le lecteur
    (nom « M.G-S.U.G.E », espace Linear), crée les matériaux, les données, importe le châssis, crée le prefab du joueur et la scène `Scenes/World`.
+   Si le projet n'a pas été créé avec le modèle « Universal 3D » (aucun pipeline assigné, tout s'affiche en magenta), le constructeur crée
+   `Settings/MGSUGE_URP.asset` (avec Universal Renderer) et l'assigne dans *Project Settings > Graphics*. Le package **Universal RP** doit être installé.
 5. Ouvrir `Assets/_MGSUGE/Scenes/World.unity` → **Play**. Cliquer dans la vue Game pour capturer la souris.
+6. Menu **MGSUGE → 4. Tester le jeu (test automatique)** : environ 45 s en mode Play avec des entrées simulées (marche, boost, quick boost,
+   saut, montée, fusil, missiles, salve, fragmentation, lame, sondes, transformation, vol, menu pause, achat, mort, redéploiement).
+   Rapport et captures dans `Logs/AutoTest` du projet (32 vérifications, toutes OK sur Unity 6000.5.10f1).
 
 Le constructeur peut être relancé à tout moment : les **données** déjà créées (ScriptableObjects) sont conservées avec vos réglages ; les matériaux, le prefab du joueur et la scène World sont regénérés.
 

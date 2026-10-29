@@ -34,7 +34,13 @@ namespace MGSUGE
                 float a0 = i * Mathf.PI * 2 / sides, a1 = (i + 1) * Mathf.PI * 2 / sides;
                 Vector3 p0 = new Vector3(Mathf.Cos(a0), 0, Mathf.Sin(a0)), p1 = new Vector3(Mathf.Cos(a1), 0, Mathf.Sin(a1));
                 Vector3 b0 = p0 * r0, b1 = p1 * r0, t0 = p0 * r1 + Vector3.up * h, t1 = p1 * r1 + Vector3.up * h;
-                b.Quad(b0, t0, t1, b1);
+                // faces hautes decoupees en tranches de 200 m max (collisions PhysX stables)
+                int rows = Mathf.Max(1, Mathf.CeilToInt(h / 200f));
+                for (int k = 0; k < rows; k++)
+                {
+                    float f0 = (float)k / rows, f1 = (float)(k + 1) / rows;
+                    b.Quad(Vector3.Lerp(b0, t0, f0), Vector3.Lerp(b0, t0, f1), Vector3.Lerp(b1, t1, f1), Vector3.Lerp(b1, t1, f0));
+                }
                 if (caps)
                 {
                     b.Tri(Vector3.up * h, t1, t0);

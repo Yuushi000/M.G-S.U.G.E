@@ -43,9 +43,28 @@ namespace MGSUGE
             var sz = ps.sizeOverLifetime; sz.enabled = true;
             sz.size = new ParticleSystem.MinMaxCurve(1f, AnimationCurve.Linear(0f, 0.6f, 1f, 1.4f));
             var r = go.GetComponent<ParticleSystemRenderer>();
-            r.sharedMaterial = particleMaterial; r.renderMode = ParticleSystemRenderMode.Billboard;
+            // point doux (sinon chaque particule est un carre plein)
+            Material pm = particleMaterial;
+            if (pm != null) { pm = new Material(pm) { name = pm.name + " (point doux)" }; pm.SetTexture("_BaseMap", SoftDot(64)); }
+            r.sharedMaterial = pm; r.renderMode = ParticleSystemRenderMode.Billboard;
             r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; r.receiveShadows = false;
             ps.Play();
+        }
+
+        /// <summary>Texture ronde a bord doux (alpha), generee une fois.</summary>
+        public static Texture2D SoftDot(int n)
+        {
+            var tex = new Texture2D(n, n, TextureFormat.RGBA32, true) { name = "MGSUGE_PointDoux", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear };
+            var px = new Color32[n * n]; float c = (n - 1) * 0.5f;
+            for (int y = 0; y < n; y++)
+                for (int x = 0; x < n; x++)
+                {
+                    float d = Mathf.Sqrt((x - c) * (x - c) + (y - c) * (y - c)) / c;
+                    float a = Mathf.Clamp01(1f - d); a = a * a * (3f - 2f * a);
+                    px[y * n + x] = new Color32(255, 255, 255, (byte)(a * 255f));
+                }
+            tex.SetPixels32(px); tex.Apply(true, true);
+            return tex;
         }
 
         public void Emit(Vector3 pos, Vector3 vel, float size, float life, Color color)
