@@ -12,34 +12,40 @@ namespace MGSUGE
     public class MissileSystem : MonoBehaviour
     {
         public static MissileSystem I { get; private set; }
-        public WeaponData data;
-        public Material bodyMaterial, trailMaterial;
+        [Tooltip("parametres des missiles (vitesses, virage, contact, pool)")] public WeaponData data;
+        [Tooltip("prefab d'un missile (corps + TrailRenderer)")] public GameObject missilePrefab;
+        [Tooltip("parent des copies creees au lancement (par defaut cet objet)")] public Transform poolParent;
+        [Header("Missiles ennemis (§10.4, §13.1)")]
+        [Tooltip("rayon de contact avec le joueur (m), en plus du rayon de touche du chassis")] public float enemyContactRadius = 3f;
+        [Tooltip("rayon des degats de proximite (m) : 100 % au centre, 40 % au bord")] public float enemySplashRadius = 9f;
+        [Range(0, 1)] public float enemySplashMinFactor = 0.4f;
+        [Tooltip("intervalle mini entre deux avertissements « Missiles entrants » (s)")] public float incomingWarningInterval = 3f;
 
         public class M
         {
             public bool active; public MissileKind kind; public Vector3 pos, dir; public float speed, maxSpeed, accel, turn, age, life, delay;
-            public Targetable target; public Vector3 point; public bool hasPoint; public float damage, impact; public bool fromPlayer;
+            public Targetable target; public Vector3 point; public bool hasPoint; public float damage, impact; public bool fromPlayer, homePlayer;
             public Vector3 start; public float startDist; public int minis; public float miniDamage;
             public Transform t; public TrailRenderer trail;
         }
         readonly List<M> pool = new List<M>();
-        Mesh body;
+        float lastIncoming = -99f;
+        /// <summary>Missiles ennemis en vol vers le joueur (alerte de la surimpression).</summary>
+        public int IncomingCount { get; private set; }
+        public readonly List<Vector3> IncomingPositions = new List<Vector3>();
 
         void Awake()
         {
             I = this;
-            body = MeshKit.ConeZ(0.32f, 2.4f, 6);
+            if (missilePrefab == null) { Debug.LogError("[MGSUGE] MissileSystem : prefab de missile non assigne."); return; }
+            var parent = poolParent != null ? poolParent : transform;
             int n = data != null ? data.missilePool : 160;
             for (int i = 0; i < n; i++)
             {
-                var go = MeshKit.Spawn("Missile", body, bodyMaterial, transform, Vector3.zero, Quaternion.identity);
-                go.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-                var tr = go.AddComponent<TrailRenderer>();
-                tr.sharedMaterial = trailMaterial; tr.time = 0.45f; tr.minVertexDistance = 2f;
-                tr.widthCurve = AnimationCurve.Linear(0f, 0.9f, 1f, 0f);
-                tr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; tr.receiveShadows = false;
+                var go = Instantiate(missilePrefab, parent);
+                go.name = missilePrefab.name;
                 go.SetActive(false);
-                pool.Add(new M { t = go.transform, trail = tr });
+                pool.Add(new M { t = go.transform, trail = go.GetComponentInChildren<TrailRenderer>() });
             }
         }
 
@@ -50,23 +56,40 @@ namespace MGSUGE
             if (m == null) return null;
             m.active = true; m.kind = kind; m.pos = pos; m.dir = dir.normalized; m.target = target;
             m.hasPoint = point.HasValue; m.point = point ?? Vector3.zero;
-            m.damage = damage; m.impact = impact; m.fromPlayer = fromPlayer; m.age = 0f;
+            m.damage = damage; m.impact = impact; m.fromPlayer = fromPlayer; m.homePlayer = false; m.age = 0f;
             float sf = kind == MissileKind.FragCarrier ? data.fragCarrierSpeedFactor : kind == MissileKind.FragMini ? data.fragMiniSpeedFactor : 1f;
             m.speed = data.missileSpeed0 * sf; m.maxSpeed = data.missileMaxSpeed * sf; m.accel = data.missileAccel * sf;
             m.turn = data.missileTurn; m.delay = kind == MissileKind.FragMini ? data.miniGuidanceDelay : data.missileGuidanceDelay;
             m.life = kind == MissileKind.FragMini ? data.miniLife : data.missileLife;
             m.start = pos; Vector3 goal = target != null ? target.Position : m.point; m.startDist = Vector3.Distance(pos, goal);
             m.t.gameObject.SetActive(true); m.t.SetPositionAndRotation(pos, Quaternion.LookRotation(m.dir));
-            m.trail.Clear();
+            if (m.trail != null) m.trail.Clear();
             Color c = kind == MissileKind.FragMini ? new Color(1f, 0.35f, 0.9f) : kind == MissileKind.Enemy ? new Color(1f, 0.2f, 0.2f) : (Random.value < 0.5f ? new Color(1f, 0.31f, 0.85f) : new Color(1f, 0.6f, 0.2f));
-            m.trail.startColor = c * 2f; m.trail.endColor = new Color(c.r, c.g, c.b, 0f);
+            if (m.trail != null) { m.trail.startColor = c * 2f; m.trail.endColor = new Color(c.r, c.g, c.b, 0f); }
             if (fromPlayer) Sfx.Play("missile");
             return m;
         }
         public void SetFrag(M m, int minis, float miniDamage) { m.minis = minis; m.miniDamage = miniDamage; }
 
+        /// <summary>Missile ennemi guide sur le joueur (Corbeau, croiseurs...). Affiche « Missiles entrants » au plus toutes les 3 s.</summary>
+        public M LaunchAtPlayer(Vector3 pos, Vector3 dir, float damage)
+        {
+            var m = Launch(MissileKind.Enemy, pos, dir, null, pos + dir * 100f, damage, 0f, false);
+            if (m == null) return null;
+            m.homePlayer = true; m.hasPoint = false;
+            if (Time.time - lastIncoming > incomingWarningInterval)
+            {
+                lastIncoming = Time.time;
+                Msg.Post("Missiles entrants : quick boost pour esquiver", MsgKind.Danger);
+                Sfx.Play("alarm");
+            }
+            return m;
+        }
+
         void Update()
         {
+            IncomingCount = 0; IncomingPositions.Clear();
+            foreach (var m in pool) if (m.active && m.homePlayer) { IncomingCount++; IncomingPositions.Add(m.pos); }
             foreach (var m in pool)
             {
                 if (!m.active) continue;
@@ -74,14 +97,16 @@ namespace MGSUGE
                 if (dt <= 0f) continue;
                 m.age += dt;
                 if (m.target != null && !m.target.Alive) { m.hasPoint = true; m.point = m.target.Position; m.target = null; }
-                Vector3 goal = m.target != null ? m.target.Position : m.hasPoint ? m.point : m.pos + m.dir * 100f;
-                if (m.age > m.delay && (m.target != null || m.hasPoint))
+                var pl0 = PlayerController.I;
+                bool homing = m.homePlayer && pl0 != null && !pl0.dead;
+                Vector3 goal = homing ? pl0.Center : m.target != null ? m.target.Position : m.hasPoint ? m.point : m.pos + m.dir * 100f;
+                if (m.age > m.delay && (m.target != null || m.hasPoint || homing))
                 {
                     Vector3 aim = goal;
-                    if (m.target != null)
+                    if (m.target != null || homing)
                     {
                         float tof = Vector3.Distance(m.pos, goal) / Mathf.Max(1f, m.speed);
-                        aim = goal + m.target.Velocity * tof * data.missileLead;
+                        aim = goal + (homing ? pl0.velocity : m.target.Velocity) * tof * data.missileLead;
                     }
                     Vector3 want = (aim - m.pos).normalized;
                     m.dir = Vector3.RotateTowards(m.dir, want, m.turn * dt, 0f).normalized;
@@ -106,7 +131,7 @@ namespace MGSUGE
                 else
                 {
                     var pl = PlayerController.I;
-                    if (pl != null && !pl.dead && MathX.SegmentDistance(a, b, pl.Center) < data.missileContact + 3f) boom = true;
+                    if (pl != null && !pl.dead && MathX.SegmentDistance(a, b, pl.Center) < data.missileContact + enemyContactRadius) boom = true;
                 }
                 if (!boom && Physics.Linecast(a, b, Layers.WorldMask, QueryTriggerInteraction.Ignore)) boom = true;
                 if (!boom && b.y < TerrainSystem.Ground(b.x, b.z)) boom = true;
@@ -142,9 +167,14 @@ namespace MGSUGE
             }
             else
             {
+                // degats pleins au contact, puis decroissants de 100 % a 40 % jusqu'au bord du rayon (§10.1)
                 var pl = PlayerController.I;
-                if (pl != null && Vector3.Distance(pl.Center, m.pos) < 9f)
-                    pl.TakeDamage(new DamageInfo { amount = m.damage * 0.5f, point = m.pos, direction = (pl.Center - m.pos).normalized, fromPlayer = false, source = this });
+                if (pl != null && !pl.dead)
+                {
+                    float d = Mathf.Max(0f, Vector3.Distance(pl.Center, m.pos) - data.missileContact - enemyContactRadius);
+                    if (d < enemySplashRadius)
+                        pl.TakeDamage(new DamageInfo { amount = m.damage * Mathf.Lerp(1f, enemySplashMinFactor, d / enemySplashRadius), point = m.pos, direction = (pl.Center - m.pos).normalized, fromPlayer = false, source = this });
+                }
             }
         }
 

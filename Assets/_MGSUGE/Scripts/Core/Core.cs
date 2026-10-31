@@ -19,8 +19,11 @@ namespace MGSUGE
     public static class Msg
     {
         public struct Entry { public string text; public MsgKind kind; public float time; }
-        public const float Duration = 3.8f;
-        public const int MaxLines = 5;
+        /// <summary>Duree d'un message (s) et nombre maximal de lignes : recopies depuis l'asset Interface par le HUD.</summary>
+        public static float Duration = 3.8f;
+        public static int MaxLines = 5;
+        /// <summary>Bornes de duree du grand message (s), recopiees depuis l'asset Interface.</summary>
+        public static float BigMin = 2.5f, BigMax = 5f;
         public static readonly List<Entry> Feed = new List<Entry>();
         public static string BigTitle, BigSub;
         public static float BigTime = -99f, BigDuration = 3f;
@@ -37,7 +40,7 @@ namespace MGSUGE
         }
         public static void Big(string title, string sub = "", float duration = 3f)
         {
-            BigTitle = title; BigSub = sub; BigTime = Time.unscaledTime; BigDuration = Mathf.Clamp(duration, 2.5f, 5f);
+            BigTitle = title; BigSub = sub; BigTime = Time.unscaledTime; BigDuration = Mathf.Clamp(duration, BigMin, BigMax);
         }
         public static void Clear() { Feed.Clear(); last.Clear(); BigTime = -99f; }
     }

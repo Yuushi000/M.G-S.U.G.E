@@ -29,6 +29,8 @@ namespace MGSUGE
         [Header("Achats uniques")]
         public long arcaneCost = 1000000, domainCost = 500000, domain2Cost = 2500000, reincarnationCost = 10000000;
         public float reincarnationFactor = 5f;
+        [Header("Mode DIVIN (§4.3)")]
+        [Tooltip("niveau maximal de reincarnation reglable avec les fleches en mode DIVIN")] [Range(0, 50)] public int divineMaxReincarnation = 12;
     }
 
     /// <summary>Progression du joueur (credits, niveaux, achats). Sera sauvegardee en JSON (jalon 10).</summary>
@@ -42,6 +44,7 @@ namespace MGSUGE
         public int reincarnation;
         public bool divine;
         public int contractIndex, threat;
+        [Tooltip("Archonte « Zenith » vaincu (condition de l'Extension du territoire II, jalon 9)")] public bool archonDefeated;
         public int Level(UpgradeModule m) => levels[(int)m];
     }
 

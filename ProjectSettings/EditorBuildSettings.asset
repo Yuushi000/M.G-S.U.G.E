@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/_MGSUGE/Scenes/World.unity
     guid: 4b686e0b47e95bd45896f3c0f1012eb2
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/_MGSUGE/Scenes/Test.unity
+    guid: fcf8d3d9084a1884d90f34fb950f2ba7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

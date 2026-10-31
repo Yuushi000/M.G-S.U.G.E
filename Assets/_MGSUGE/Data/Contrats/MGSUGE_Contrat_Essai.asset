@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db48375fe360a9146af98f7817ff7026, type: 3}
+  m_Name: MGSUGE_Contrat_Essai
+  m_EditorClassIdentifier: MGSUGE::MGSUGE.ContractData
+  title: Contrat d'essai
+  location: Terrain d'essai
+  description: "D\xE9truisez la petite garnison au sud. \xC0 chaque fin de contrat, la menace augmente (cycle d'un seul contrat)."
+  reward: 2600
+  enemiesNote: 2 sentinelles, 1 tourelle, 1 relais

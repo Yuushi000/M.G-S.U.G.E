@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ddf2ff6e9b1ecb448fc54d8b72c9fa9, type: 3}
+  m_Name: MGSUGE_AvantPostes
+  m_EditorClassIdentifier: MGSUGE::MGSUGE.OutpostData
+  activationDistance: 1700
+  activationDistanceSpace: 1300
+  spaceAltitude: 3600
+  deactivationDistance: 2700
+  refreshDelay: 150
+  checkInterval: 0.25
+  reward: 400
+  victoryMessage: "Avant-poste neutralis\xE9 \xB7 +{0}"
+  count: 36
+  seed: 90210
+  minDistanceFromHelios: 1500
+  minSpacing: 850
+  maxSlope: 8

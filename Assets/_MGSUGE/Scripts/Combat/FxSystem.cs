@@ -5,73 +5,39 @@ namespace MGSUGE
 {
     /// <summary>
     /// Effets visuels de base (§17.2) : un nuage de particules additif unique (etincelles, poussiere, explosions),
-    /// eclairs lumineux, rayons (sondes laser). Remplacable par VFX Graph au jalon 10.
+    /// eclairs lumineux, rayons (sondes laser). Le systeme de particules est un objet enfant de la scene (FX/Particules),
+    /// les eclairs et rayons sont des prefabs copies au lancement. Remplacable par VFX Graph au jalon 10.
     /// </summary>
     public class FxSystem : MonoBehaviour
     {
         public static FxSystem I { get; private set; }
-        public Material particleMaterial, flashMaterial, beamMaterial;
-        public int maxParticles = 20000;
+        [Tooltip("systeme de particules partage (objet FX/Particules de la scene)")] public ParticleSystem particles;
+        [Tooltip("prefab d'eclair (sphere additive)")] public GameObject flashPrefab;
+        [Tooltip("prefab de rayon (LineRenderer additif)")] public GameObject beamPrefab;
+        [Tooltip("nombre maximal d'eclairs simultanes")] [Min(1)] public int maxFlashes = 48;
+        [Tooltip("nombre maximal de rayons simultanes")] [Min(1)] public int maxBeams = 64;
+        [Tooltip("parent des copies (par defaut cet objet)")] public Transform poolParent;
 
-        ParticleSystem ps;
         class Flash { public Transform t; public Renderer r; public float time, life, size; public Color color; }
         class Beam { public LineRenderer lr; public float time, life; public Color color; public float width; }
         readonly List<Flash> flashes = new List<Flash>();
         readonly List<Beam> beams = new List<Beam>();
-        Mesh sphere; MaterialPropertyBlock mpb;
+        MaterialPropertyBlock mpb;
 
         void Awake()
         {
             I = this;
             mpb = new MaterialPropertyBlock();
-            sphere = MeshKit.Sphere(1f, 1);
-            var go = new GameObject("Particules");
-            go.transform.SetParent(transform, false);
-            ps = go.AddComponent<ParticleSystem>();
-            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-            var main = ps.main;
-            main.loop = false; main.playOnAwake = false; main.maxParticles = maxParticles;
-            main.simulationSpace = ParticleSystemSimulationSpace.World; main.startSpeed = 0f; main.startLifetime = 1f;
-            main.gravityModifier = 0f;
-            var em = ps.emission; em.enabled = false;
-            var sh = ps.shape; sh.enabled = false;
-            var col = ps.colorOverLifetime; col.enabled = true;
-            var g = new Gradient();
-            g.SetKeys(new[] { new GradientColorKey(Color.white, 0f), new GradientColorKey(Color.white, 1f) },
-                      new[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(0.8f, 0.4f), new GradientAlphaKey(0f, 1f) });
-            col.color = new ParticleSystem.MinMaxGradient(g);
-            var sz = ps.sizeOverLifetime; sz.enabled = true;
-            sz.size = new ParticleSystem.MinMaxCurve(1f, AnimationCurve.Linear(0f, 0.6f, 1f, 1.4f));
-            var r = go.GetComponent<ParticleSystemRenderer>();
-            // point doux (sinon chaque particule est un carre plein)
-            Material pm = particleMaterial;
-            if (pm != null) { pm = new Material(pm) { name = pm.name + " (point doux)" }; pm.SetTexture("_BaseMap", SoftDot(64)); }
-            r.sharedMaterial = pm; r.renderMode = ParticleSystemRenderMode.Billboard;
-            r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; r.receiveShadows = false;
-            ps.Play();
+            if (particles == null) Debug.LogError("[MGSUGE] FxSystem : systeme de particules non assigne.");
+            else if (!particles.isPlaying) particles.Play();
         }
-
-        /// <summary>Texture ronde a bord doux (alpha), generee une fois.</summary>
-        public static Texture2D SoftDot(int n)
-        {
-            var tex = new Texture2D(n, n, TextureFormat.RGBA32, true) { name = "MGSUGE_PointDoux", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear };
-            var px = new Color32[n * n]; float c = (n - 1) * 0.5f;
-            for (int y = 0; y < n; y++)
-                for (int x = 0; x < n; x++)
-                {
-                    float d = Mathf.Sqrt((x - c) * (x - c) + (y - c) * (y - c)) / c;
-                    float a = Mathf.Clamp01(1f - d); a = a * a * (3f - 2f * a);
-                    px[y * n + x] = new Color32(255, 255, 255, (byte)(a * 255f));
-                }
-            tex.SetPixels32(px); tex.Apply(true, true);
-            return tex;
-        }
+        Transform Parent => poolParent != null ? poolParent : transform;
 
         public void Emit(Vector3 pos, Vector3 vel, float size, float life, Color color)
         {
-            if (ps == null) return;
+            if (particles == null) return;
             var ep = new ParticleSystem.EmitParams { position = pos, velocity = vel, startSize = size, startLifetime = life, startColor = color, applyShapeToPosition = false };
-            ps.Emit(ep, 1);
+            particles.Emit(ep, 1);
         }
 
         public void SpawnFlash(Vector3 p, float size, Color c, float life)
@@ -80,10 +46,9 @@ namespace MGSUGE
             foreach (var x in flashes) if (!x.t.gameObject.activeSelf) { f = x; break; }
             if (f == null)
             {
-                if (flashes.Count >= 48) return;
-                var go = MeshKit.Spawn("Eclair", sphere, flashMaterial, transform, Vector3.zero, Quaternion.identity);
-                go.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-                f = new Flash { t = go.transform, r = go.GetComponent<Renderer>() }; flashes.Add(f);
+                if (flashes.Count >= maxFlashes || flashPrefab == null) return;
+                var go = Instantiate(flashPrefab, Parent); go.name = flashPrefab.name;
+                f = new Flash { t = go.transform, r = go.GetComponentInChildren<Renderer>() }; flashes.Add(f);
             }
             f.t.gameObject.SetActive(true); f.t.position = p; f.time = Time.time; f.life = life; f.size = size; f.color = c;
         }
@@ -94,10 +59,9 @@ namespace MGSUGE
             foreach (var x in beams) if (!x.lr.gameObject.activeSelf) { bm = x; break; }
             if (bm == null)
             {
-                if (beams.Count >= 64) return;
-                var go = new GameObject("Rayon"); go.transform.SetParent(transform, false);
-                var lr = go.AddComponent<LineRenderer>(); lr.sharedMaterial = beamMaterial; lr.positionCount = 2; lr.useWorldSpace = true;
-                lr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; lr.receiveShadows = false;
+                if (beams.Count >= maxBeams || beamPrefab == null) return;
+                var go = Instantiate(beamPrefab, Parent); go.name = beamPrefab.name;
+                var lr = go.GetComponent<LineRenderer>(); lr.positionCount = 2; lr.useWorldSpace = true;
                 bm = new Beam { lr = lr }; beams.Add(bm);
             }
             bm.lr.gameObject.SetActive(true); bm.lr.SetPosition(0, a); bm.lr.SetPosition(1, b);

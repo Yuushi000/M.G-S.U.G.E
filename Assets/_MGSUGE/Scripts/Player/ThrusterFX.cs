@@ -10,24 +10,23 @@ namespace MGSUGE
     public class ThrusterFX : MonoBehaviour
     {
         public PlayerController player;
-        public Transform model;
+        [Tooltip("flammes des tuyeres (pieces Flame_* du modele), assignees par le constructeur")] public List<Transform> flames = new List<Transform>();
         [Tooltip("longueur maximale de flamme (facteur de la flamme de base de 1 m)")] public float maxLength = 4.5f;
         public float idleLength = 0.25f;
 
         class Flame { public Transform t; public int axis; public float sign; public Vector3 baseScale; public float len, phase; }
-        readonly List<Flame> flames = new List<Flame>();
+        readonly List<Flame> list = new List<Flame>();
 
         void Start()
         {
-            if (model == null) return;
-            foreach (var tr in model.GetComponentsInChildren<Transform>(true))
+            foreach (var tr in flames)
             {
-                if (!tr.name.StartsWith("Flame_")) continue;
+                if (tr == null) continue;
                 var mf = tr.GetComponent<MeshFilter>(); if (mf == null || mf.sharedMesh == null) continue;
                 var bnd = mf.sharedMesh.bounds; Vector3 s = bnd.size;
                 int axis = s.x >= s.y && s.x >= s.z ? 0 : s.y >= s.z ? 1 : 2;
                 float sign = Mathf.Sign(bnd.center[axis]); if (sign == 0f) sign = 1f;
-                flames.Add(new Flame { t = tr, axis = axis, sign = sign, baseScale = tr.localScale, phase = Random.value * 10f });
+                list.Add(new Flame { t = tr, axis = axis, sign = sign, baseScale = tr.localScale, phase = Random.value * 10f });
             }
         }
 
@@ -39,7 +38,7 @@ namespace MGSUGE
             float mag = Mathf.Min(thrust.magnitude, 1.6f);
             Vector3 dir = mag > 0.01f ? thrust / Mathf.Max(thrust.magnitude, 1e-4f) : Vector3.zero;
             bool alive = !player.dead;
-            foreach (var f in flames)
+            foreach (var f in list)
             {
                 Vector3 local = Vector3.zero; local[f.axis] = f.sign;
                 Vector3 exhaust = f.t.TransformDirection(local).normalized;      // direction des gaz

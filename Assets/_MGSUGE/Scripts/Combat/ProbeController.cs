@@ -27,14 +27,16 @@ namespace MGSUGE
         public bool Fighting { get; private set; }
         static readonly Color Yellow = new Color32(0xFF, 0xD8, 0x4A, 0xFF);
 
+        [Tooltip("sondes du modele (pieces Probe_1 a Probe_6 du dos), assignees par le constructeur")]
+        public List<Transform> probeSockets = new List<Transform>();
+
         void Start()
         {
-            if (rig == null) return;
-            for (int i = 1; i <= 6; i++)
+            for (int i = 0; i < probeSockets.Count; i++)
             {
-                var t = rig.Find("Probe_" + i);
+                var t = probeSockets[i];
                 if (t == null) continue;
-                probes.Add(new Probe { t = t, home = t.parent, homePos = t.localPosition, homeRot = t.localRotation, homeScale = t.localScale, phase = i * 1.047f });
+                probes.Add(new Probe { t = t, home = t.parent, homePos = t.localPosition, homeRot = t.localRotation, homeScale = t.localScale, phase = (i + 1) * 1.047f });
             }
         }
 

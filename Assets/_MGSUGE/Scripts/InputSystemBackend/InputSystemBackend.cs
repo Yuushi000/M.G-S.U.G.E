@@ -32,6 +32,7 @@ namespace MGSUGE
             B(Cmd.Repair, "<Keyboard>/#(h)"); B(Cmd.Arcane, "<Keyboard>/#(g)"); B(Cmd.Domain, "<Keyboard>/#(b)");
             B(Cmd.Pause, "<Keyboard>/escape"); cmds[Cmd.Pause].AddBinding("<Keyboard>/#(p)");
             B(Cmd.Upgrades, "<Keyboard>/#(u)"); B(Cmd.Commands, "<Keyboard>/#(k)"); B(Cmd.MapZoom, "<Keyboard>/#(m)"); B(Cmd.Mute, "<Keyboard>/#(n)");
+            B(Cmd.Start, "<Keyboard>/enter"); cmds[Cmd.Start].AddBinding("<Keyboard>/numpadEnter");
         }
         void B(Cmd c, string binding) { cmds[c] = new InputAction(c.ToString(), InputActionType.Button, binding); }
 

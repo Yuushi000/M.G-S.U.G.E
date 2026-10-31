@@ -25,6 +25,8 @@ namespace MGSUGE
         public CameraRig cam;
         public PlayerInputs input;
         [Tooltip("racine visuelle (modele) : tourne selon la forme ; la capsule de collision reste droite")] public Transform visual;
+        [Tooltip("point de redeploiement (plateforme Helios) ; vide = position Helios des donnees du monde")] public Transform spawnPoint;
+        public Vector3 SpawnPosition => spawnPoint != null ? spawnPoint.position : world.heliosPosition;
 
         [Header("Etat (lecture)")]
         public PlayerProgress progress = new PlayerProgress();
@@ -478,8 +480,8 @@ namespace MGSUGE
             form = FrameForm.Mech; transforming = false; shipBlend = 0f; SetCollider(FrameForm.Mech);
             AP = apTrail = S.armor; EN = S.energy; overheatTimer = 0f; recovering = false; kits = frame.repairKits;
             velocity = Vector3.zero; landCrouch = 0f;
-            cc.enabled = false; transform.position = world.heliosPosition + Vector3.up * (frame.frameClear + 0.5f); cc.enabled = true;
-            yaw = 0f; cam?.Snap(0f, 0f);
+            cc.enabled = false; transform.position = SpawnPosition + Vector3.up * (frame.frameClear + 0.5f); cc.enabled = true;
+            yaw = spawnPoint != null ? spawnPoint.eulerAngles.y : 0f; cam?.Snap(yaw, 0f);
         }
     }
 }

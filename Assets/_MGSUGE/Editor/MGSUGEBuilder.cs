@@ -12,65 +12,143 @@ using Object = UnityEngine.Object;
 namespace MGSUGE.EditorTools
 {
     /// <summary>
-    /// Construit le projet en un clic (menu MGSUGE) : couches, reglages du lecteur, materiaux, donnees (ScriptableObjects),
-    /// import du chassis Vesper (FBX), prefab du joueur et scene World. Relancable sans risque : les assets existants sont mis a jour.
+    /// Constructeur du projet (menu MGSUGE). Cree une fois pour toutes, dans le projet : materiaux, maillages, donnees
+    /// (ScriptableObjects), prefabs (joueur, ennemis, avant-postes, tours, effets) et les scenes World et Test, enregistrees
+    /// avec une Hierarchy rangee (Managers, Lights, Player, World, Enemies, Contracts, Outposts, Bosses, UI).
+    /// Ensuite, on ouvre les scenes par double-clic et on joue : rien n'est regenere au lancement.
+    /// Relancer le constructeur REMPLACE les prefabs et les scenes (les donnees deja creees sont conservees).
     /// </summary>
-    public static class MGSUGEBuilder
+    public static partial class MGSUGEBuilder
     {
         const string Root = "Assets/_MGSUGE";
         const string ModelPath = Root + "/Art/Models/MGSUGE_Vesper_Mech.fbx";
         const string PalettePath = Root + "/Art/Models/MGSUGE_Vesper_Palette.json";
         const string PosesPath = Root + "/Art/Models/MGSUGE_Vesper_Poses.json";
         const string MatDir = Root + "/Art/Materials";
+        const string GenDir = Root + "/Art/Generated";
         const string DataDir = Root + "/Data";
-        const string ScenePath = Root + "/Scenes/World.unity";
-        const string PlayerPrefab = Root + "/Prefabs/MGSUGE_Player.prefab";
+        const string PrefabDir = Root + "/Prefabs";
+        const string SceneDir = Root + "/Scenes";
+        const string WorldScenePath = SceneDir + "/World.unity";
+        const string TestScenePath = SceneDir + "/Test.unity";
+        const string PlayerPrefab = PrefabDir + "/Joueur/MGSUGE_Player.prefab";
 
-        [MenuItem("MGSUGE/1. Construire le projet (tout)", priority = 1)]
-        public static void BuildAll()
+        // ------------------------------------------------------------------ menus
+        [MenuItem("MGSUGE/1. Construire tout (prefabs, donnees, scenes World et Test)", priority = 1)]
+        public static void BuildAllMenu()
         {
-            try
-            {
-                EditorUtility.DisplayProgressBar("MGSUGE", "Reglages du projet", 0.05f);
-                ProjectSettingsSetup();
-                EditorUtility.DisplayProgressBar("MGSUGE", "Materiaux", 0.2f);
-                var mats = BuildMaterials();
-                EditorUtility.DisplayProgressBar("MGSUGE", "Donnees", 0.35f);
-                var data = BuildData();
-                EditorUtility.DisplayProgressBar("MGSUGE", "Import du chassis Vesper", 0.5f);
-                ConfigureModel(mats);
-                EditorUtility.DisplayProgressBar("MGSUGE", "Prefab du joueur", 0.65f);
-                var prefab = BuildPlayerPrefab(data);
-                EditorUtility.DisplayProgressBar("MGSUGE", "Scene World", 0.8f);
-                BuildScene(data, mats, prefab);
-                AssetDatabase.SaveAssets();
-                Debug.Log("[MGSUGE] Projet construit. Ouvrez la scene " + ScenePath + " et lancez Play.");
-            }
-            catch (Exception e) { Debug.LogException(e); EditorUtility.DisplayDialog("MGSUGE", "Erreur pendant la construction :\n" + e.Message, "OK"); }
-            finally { EditorUtility.ClearProgressBar(); }
+            bool exists = File.Exists(WorldScenePath) || File.Exists(TestScenePath);
+            if (exists && !EditorUtility.DisplayDialog("MGSUGE", "Les prefabs et les scenes World et Test vont etre regeneres.\n" +
+                "Vos modifications dans ces scenes et ces prefabs seront perdues (les donnees de Data/ sont conservees).\n\nContinuer ?", "Construire", "Annuler")) return;
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            BuildAll(true, true);
         }
+        [MenuItem("MGSUGE/2. Ouvrir la scene World", priority = 20)]
+        public static void OpenWorld() { if (File.Exists(WorldScenePath) && EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) EditorSceneManager.OpenScene(WorldScenePath); }
+        [MenuItem("MGSUGE/3. Ouvrir la scene Test", priority = 21)]
+        public static void OpenTest() { if (File.Exists(TestScenePath) && EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) EditorSceneManager.OpenScene(TestScenePath); }
 
-        [MenuItem("MGSUGE/2. Ouvrir la scene World", priority = 2)]
-        public static void OpenWorld() { if (File.Exists(ScenePath)) EditorSceneManager.OpenScene(ScenePath); }
-
-        [MenuItem("MGSUGE/4. Tester le jeu (test automatique)", priority = 4)]
-        public static void RunAutoTest()
+        [MenuItem("MGSUGE/4. Test automatique (scene Test)", priority = 40)]
+        public static void RunAutoTestTest() => RunAutoTest(TestScenePath);
+        [MenuItem("MGSUGE/5. Test automatique (scene World)", priority = 41)]
+        public static void RunAutoTestWorld() => RunAutoTest(WorldScenePath);
+        static void RunAutoTest(string scene)
         {
             if (EditorApplication.isPlaying) { EditorApplication.isPlaying = false; return; }
-            if (!File.Exists(ScenePath)) BuildAll();
+            if (!File.Exists(scene)) { EditorUtility.DisplayDialog("MGSUGE", "Scene introuvable : " + scene + "\nLancez d'abord MGSUGE > 1. Construire tout.", "OK"); return; }
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
-            EditorSceneManager.OpenScene(ScenePath);
+            EditorSceneManager.OpenScene(scene);
             PlayerPrefs.SetInt(AutoTest.PrefKey, 1); PlayerPrefs.Save();
-            Debug.Log("[MGSUGE] Test automatique : environ 45 s. Rapport et captures dans Logs/AutoTest du projet.");
+            Debug.Log("[MGSUGE] Test automatique : 1 a 2 minutes. Rapport et captures dans Logs/AutoTest du projet.");
             EditorApplication.isPlaying = true;
         }
 
-        [MenuItem("MGSUGE/3. Reimporter le chassis et les poses", priority = 3)]
+        [MenuItem("MGSUGE/Avance/Reconstruire seulement les prefabs et les donnees", priority = 60)]
+        public static void BuildAssetsOnly()
+        {
+            if (!EditorUtility.DisplayDialog("MGSUGE", "Les prefabs vont etre regeneres (les scenes ne changent pas ; leurs instances suivront les prefabs).", "Construire", "Annuler")) return;
+            BuildAll(false, false);
+        }
+        [MenuItem("MGSUGE/Avance/Reconstruire seulement la scene World", priority = 61)]
+        public static void BuildWorldOnly()
+        {
+            if (!EditorUtility.DisplayDialog("MGSUGE", "La scene World va etre regeneree (vos modifications y seront perdues).", "Construire", "Annuler")) return;
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            BuildAll(true, false, false);
+        }
+        [MenuItem("MGSUGE/Avance/Reconstruire seulement la scene Test", priority = 62)]
+        public static void BuildTestOnly()
+        {
+            if (!EditorUtility.DisplayDialog("MGSUGE", "La scene Test va etre regeneree (vos modifications y seront perdues).", "Construire", "Annuler")) return;
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            BuildAll(false, true, false);
+        }
+        [MenuItem("MGSUGE/Avance/Reimporter le chassis et les poses", priority = 63)]
         public static void ReimportModel()
         {
             var mats = BuildMaterials(); ConfigureModel(mats);
             var poses = LoadOrCreate<PoseLibrary>(DataDir + "/MGSUGE_Poses.asset");
             poses.LoadJson(File.ReadAllText(PosesPath)); EditorUtility.SetDirty(poses); AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>Pour l'automatisation (ligne de commande) : construit tout sans boite de dialogue.</summary>
+        public static void BuildAllBatch() => BuildAll(true, true);
+
+        static void BuildAll(bool world, bool test, bool prefabs = true)
+        {
+            try
+            {
+                EditorUtility.DisplayProgressBar("MGSUGE", "Reglages du projet", 0.03f);
+                ProjectSettingsSetup();
+                EditorUtility.DisplayProgressBar("MGSUGE", "Materiaux", 0.08f);
+                var mats = BuildMaterials();
+                EditorUtility.DisplayProgressBar("MGSUGE", "Donnees", 0.12f);
+                var data = BuildData();
+                EditorUtility.DisplayProgressBar("MGSUGE", "Import du chassis Vesper", 0.18f);
+                ConfigureModel(mats);
+                EditorUtility.DisplayProgressBar("MGSUGE", "Maillages", 0.25f);
+                var meshes = BuildMeshes(data);
+                Prefabs pf;
+                if (prefabs)
+                {
+                    EditorUtility.DisplayProgressBar("MGSUGE", "Prefabs", 0.35f);
+                    pf = BuildPrefabs(data, mats, meshes);
+                }
+                else pf = LoadPrefabs();
+                EditorUtility.DisplayProgressBar("MGSUGE", "Interface (polices, sprites, carte, prefabs UI)", 0.45f);
+                BuildUiAssets(data);
+                AssetDatabase.SaveAssets();
+                // Une nouvelle scene decharge les assets non references : on recharge toutes les references apres chaque NewScene.
+                if (world)
+                {
+                    EditorUtility.DisplayProgressBar("MGSUGE", "Scene World (terrain, arcologie, contrats, avant-postes)", 0.55f);
+                    var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+                    BuildWorldScene(scene, BuildData(), BuildMaterials(), LoadMeshes(), LoadPrefabs());
+                }
+                if (test)
+                {
+                    EditorUtility.DisplayProgressBar("MGSUGE", "Scene Test", 0.85f);
+                    var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+                    BuildTestScene(scene, BuildData(), BuildMaterials(), LoadMeshes(), LoadPrefabs());
+                }
+                UpdateBuildSettings();
+                AssetDatabase.SaveAssets();
+                if (world) EditorSceneManager.OpenScene(WorldScenePath);
+                Debug.Log("[MGSUGE] Construction terminee. Scenes : " + WorldScenePath + " et " + TestScenePath + " (File > Build Profiles).");
+            }
+            catch (Exception e) { Debug.LogException(e); EditorUtility.DisplayDialog("MGSUGE", "Erreur pendant la construction :\n" + e.Message, "OK"); }
+            finally { EditorUtility.ClearProgressBar(); }
+        }
+
+        static void UpdateBuildSettings()
+        {
+            var list = new List<EditorBuildSettingsScene>();
+            foreach (var p in new[] { WorldScenePath, TestScenePath })
+                if (File.Exists(p)) list.Add(new EditorBuildSettingsScene(p, true));
+            // les autres scenes deja listees (hors scene d'exemple du modele Unity) restent apres, desactivees si absentes
+            foreach (var s in EditorBuildSettings.scenes)
+                if (!list.Exists(x => x.path == s.path) && !s.path.EndsWith("SampleScene.unity") && File.Exists(s.path)) list.Add(s);
+            EditorBuildSettings.scenes = list.ToArray();
         }
 
         // ------------------------------------------------------------------ reglages
@@ -221,6 +299,27 @@ namespace MGSUGE.EditorTools
             d["Sentinel"] = Lit("MGSUGE_Essai_Sentinelle", Hex("#2A2E39"), 0.5f, 0.5f, new Color(1f, 0.1f, 0.15f) * 0.6f);
             d["Relay"] = Lit("MGSUGE_Essai_Relais", Hex("#241C2A"), 0.4f, 0.5f, new Color(1f, 0.1f, 0.2f) * 1.5f);
             d["RelayRing"] = Lit("MGSUGE_Essai_Anneau", Hex("#FF4458"), 0f, 0.5f, new Color(1f, 0.15f, 0.2f) * 3f);
+            // ennemis (§13.1) : metal sombre, liserets rouges « menace »
+            d["EnemyHull"] = Lit("MGSUGE_Ennemi_Coque", Hex("#2A2E39"), 0.55f, 0.5f);
+            d["EnemyDark"] = Lit("MGSUGE_Ennemi_Sombre", Hex("#16171D"), 0.4f, 0.4f);
+            d["EnemyGlow"] = Lit("MGSUGE_Ennemi_Lumiere", Hex("#FF4458"), 0f, 0.5f, new Color(1f, 0.12f, 0.18f) * 4f);
+            d["EnemyCore"] = Lit("MGSUGE_Ennemi_Noyau", Hex("#241C2A"), 0.4f, 0.5f, new Color(1f, 0.1f, 0.2f) * 1.5f);
+            d["EnemyEngine"] = Lit("MGSUGE_Ennemi_Reacteur", Hex("#FF7A3A"), 0f, 0.5f, new Color(1f, 0.45f, 0.15f) * 5f);
+            d["Shell"] = Lit("MGSUGE_Obus", Hex("#FF8A2A"), 0f, 0.5f, new Color(1f, 0.5f, 0.15f) * 6f);
+            d["Telegraph"] = Additive("MGSUGE_Telegraphe", new Color(1f, 0.32f, 0.12f, 0.55f));
+            d["TelegraphFill"] = Additive("MGSUGE_Telegraphe_Remplissage", new Color(1f, 0.25f, 0.1f, 0.22f));
+            // avant-postes (§13.3) et decors provisoires des contrats
+            d["OutpostHull"] = Lit("MGSUGE_AvantPoste_Coque", Hex("#2B2730"), 0.5f, 0.45f);
+            d["OutpostTrim"] = Lit("MGSUGE_AvantPoste_Liseret", Hex("#FF2A3A"), 0f, 0.5f, new Color(1f, 0.08f, 0.12f) * 4f);
+            d["PylonGlow"] = Lit("MGSUGE_Pylone_Lumiere", Hex("#6A7BFF"), 0f, 0.5f, new Color(0.35f, 0.45f, 1f) * 4f);
+            d["Wreck"] = Lit("MGSUGE_Epave_Coque", Hex("#3A3530"), 0.6f, 0.35f);
+            d["TestGround"] = Lit("MGSUGE_Sol_Essai", Hex("#1E1A22"), 0.1f, 0.2f);
+            // textures generees : point doux des particules, croute de la lave
+            var dot = SoftDotTexture();
+            d["Particles"].SetTexture("_BaseMap", dot); EditorUtility.SetDirty(d["Particles"]);
+            var crust = LavaCrustTexture();
+            d["Lava"].SetTexture("_BaseMap", crust); d["Lava"].SetTexture("_EmissionMap", crust);
+            d["Lava"].SetTextureScale("_BaseMap", new Vector2(6f, 15f)); EditorUtility.SetDirty(d["Lava"]);
             AssetDatabase.SaveAssets();
             return d;
         }
@@ -230,6 +329,9 @@ namespace MGSUGE.EditorTools
         {
             public FrameStatsData frame; public CameraData cam; public WeaponData weapons; public WorldData world;
             public ProgressionData progression; public PoseLibrary poses; public PaletteData player, corbeau;
+            public SentinelData sentinel; public FrameEnemyData corbeauData; public TurretData turret; public RelayData relay; public FighterData fighter; public SpiderData spider;
+            public CampaignData campaign; public OutpostData outposts; public PatrolData patrols;
+            public ContractData[] contracts; public ContractData testContract;
         }
         static T LoadOrCreate<T>(string path, Action<T> init = null) where T : ScriptableObject
         {
@@ -267,6 +369,7 @@ namespace MGSUGE.EditorTools
             if (Mathf.Abs(d.frame.frameClear - 5.7f) < 0.01f)
             { d.frame.frameClear = 7f; d.frame.frameBottomOffset = -4.7f; EditorUtility.SetDirty(d.frame); Debug.Log("[MGSUGE] Chassis passe a 12 m : bassin a 7 m du sol."); }
             d.poses.LoadJson(File.ReadAllText(PosesPath)); EditorUtility.SetDirty(d.poses);
+            BuildGameplayData(d);
             AssetDatabase.SaveAssets();
             return d;
         }
@@ -287,11 +390,91 @@ namespace MGSUGE.EditorTools
             imp.SaveAndReimport();
         }
 
+
+        // ------------------------------------------------------------------ donnees de jeu du jalon 5
+        static void BuildGameplayData(Data d)
+        {
+            string ed = DataDir + "/Ennemis", cd = DataDir + "/Contrats";
+            EnsureFolder(ed); EnsureFolder(cd);
+            Color threat = Hex("#FF4458");
+            d.sentinel = LoadOrCreate<SentinelData>(ed + "/MGSUGE_Ennemi_Sentinelle.asset", x =>
+            { x.displayName = "Sentinelle"; x.credits = 120; x.maxHP = 650; x.radius = 3.8f; x.impactMax = 0; x.patrolRadius = 60; x.patrolSpeed = 14; x.shotColor = threat; });
+            d.corbeauData = LoadOrCreate<FrameEnemyData>(ed + "/MGSUGE_Ennemi_Corbeau.asset", x =>
+            { x.displayName = "Châssis hostile « Corbeau »"; x.credits = 900; x.maxHP = 4200; x.radius = 5f; x.impactMax = 2400; x.patrolRadius = 80; x.patrolSpeed = 12; x.shotColor = threat; x.shotLength = 7f; });
+            d.turret = LoadOrCreate<TurretData>(ed + "/MGSUGE_Ennemi_Tourelle.asset", x =>
+            { x.displayName = "Tourelle de défense"; x.credits = 250; x.maxHP = 1800; x.radius = 4.6f; x.impactMax = 0; x.shotColor = new Color(1f, 0.45f, 0.2f); });
+            d.relay = LoadOrCreate<RelayData>(ed + "/MGSUGE_Ennemi_Relais.asset", x =>
+            { x.displayName = "Relais de brouillage"; x.credits = 400; x.maxHP = 5200; x.radius = 7f; x.impactMax = 3800; });
+            d.fighter = LoadOrCreate<FighterData>(ed + "/MGSUGE_Ennemi_Faucon.asset", x =>
+            { x.displayName = "Chasseur « Faucon »"; x.credits = 300; x.maxHP = 1500; x.radius = 5f; x.impactMax = 0; x.aggroRange = 1100; x.contractAggroRange = 1100; x.patrolRadius = 400; x.patrolSpeed = 70; x.shotColor = threat; });
+            d.spider = LoadOrCreate<SpiderData>(ed + "/MGSUGE_Ennemi_Araignee.asset", x =>
+            { x.displayName = "Araignée de siège"; x.credits = 450; x.maxHP = 3000; x.radius = 7f; x.impactMax = 2000; x.patrolRadius = 40; x.patrolSpeed = 6; });
+            d.campaign = LoadOrCreate<CampaignData>(DataDir + "/MGSUGE_Campagne.asset");
+            d.outposts = LoadOrCreate<OutpostData>(DataDir + "/MGSUGE_AvantPostes.asset");
+            d.patrols = LoadOrCreate<PatrolData>(DataDir + "/MGSUGE_Patrouilles.asset");
+            ContractData C(int n, string file, string title, string loc, long reward, string desc, string note)
+                => LoadOrCreate<ContractData>($"{cd}/MGSUGE_Contrat_{n}_{file}.asset", x => { x.title = title; x.location = loc; x.reward = reward; x.description = desc; x.enemiesNote = note; });
+            d.contracts = new[]
+            {
+                C(1, "Lyra", "Relais de brouillage de Lyra", "Champ de quartz", 2600, "Trois relais brouillent les communications du champ de quartz. Détruisez-les.", "3 relais, 1 châssis, 4 sentinelles"),
+                C(2, "Kessler", "Purge de la Porte de Kessler", "Cratère", 3000, "Des tourelles tiennent les pylônes du cratère, protégées par un châssis. Neutralisez la position.", "4 tourelles sur les pylônes, 1 châssis, 3 sentinelles"),
+                C(3, "Thalassa", "Pillards de l'épave Thalassa", "Épave", 3200, "Deux châssis pillent la coque du Thalassa sous la couverture de tourelles et de sentinelles.", "2 châssis, tourelles sur la coque, 5 sentinelles"),
+                C(4, "Orsk", "Raffinerie d'Orsk", "Raffinerie", 3400, "Des araignées de siège pilonnent la raffinerie depuis le sol, couvertes par une escadrille de chasseurs.", "2 araignées de siège, 2 relais, 3 chasseurs"),
+                C(5, "Ascenseur", "Ascenseur orbital", "Crêtes", 3800, "Deux relais tiennent le pied de l'ascenseur et la station à 2 450 m. Passez en forme vaisseau (T) pour monter.", "2 relais (pied et station à 2 450 m), 1 châssis, 4 sentinelles entre 500 et 2 000 m"),
+                C(6, "Helix", "Spatioport Hélix", "Spatioport", 4000, "Un escadron de chasseurs a pris le spatioport. Abattez-les et détruisez les châssis qui gardent les pistes.", "5 chasseurs, 2 châssis, 1 araignée"),
+                C(7, "Ceinture", "Ceinture flottante", "Haute altitude (200 ; 800 ; -1 800)", 4400, "Relais sur les stations flottantes, tourelles sur les croiseurs. Volez entre les astéroïdes.", "2 relais sur stations flottantes, 3 tourelles sur croiseurs, 6 sentinelles, 2 chasseurs"),
+            };
+            d.testContract = LoadOrCreate<ContractData>($"{cd}/MGSUGE_Contrat_Essai.asset", x =>
+            { x.title = "Contrat d'essai"; x.location = "Terrain d'essai"; x.reward = 2600; x.description = "Détruisez la petite garnison au sud. À chaque fin de contrat, la menace augmente (cycle d'un seul contrat)."; x.enemiesNote = "2 sentinelles, 1 tourelle, 1 relais"; });
+            foreach (var o in new Object[] { d.sentinel, d.corbeauData, d.turret, d.relay, d.fighter, d.spider, d.campaign, d.outposts, d.patrols, d.testContract }) EditorUtility.SetDirty(o);
+        }
+
+        // ------------------------------------------------------------------ textures generees
+        static Texture2D SaveTexture(string name, int n, Func<int, int, Color32> px, bool alphaIsTransparency, TextureWrapMode wrap)
+        {
+            EnsureFolder(GenDir);
+            string path = $"{GenDir}/{name}.png";
+            var existing = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+            if (existing != null) return existing;
+            var tex = new Texture2D(n, n, TextureFormat.RGBA32, false);
+            var c = new Color32[n * n];
+            for (int j = 0; j < n; j++) for (int i = 0; i < n; i++) c[j * n + i] = px(i, j);
+            tex.SetPixels32(c); tex.Apply();
+            File.WriteAllBytes(path, tex.EncodeToPNG());
+            Object.DestroyImmediate(tex);
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
+            var imp = AssetImporter.GetAtPath(path) as TextureImporter;
+            if (imp != null)
+            {
+                imp.alphaIsTransparency = alphaIsTransparency; imp.wrapMode = wrap; imp.mipmapEnabled = true; imp.sRGBTexture = true;
+                imp.SaveAndReimport();
+            }
+            return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+        }
+        static Texture2D SoftDotTexture() => SaveTexture("MGSUGE_Point_Doux", 64, (i, j) =>
+        {
+            float c = 31.5f, d = Mathf.Sqrt((i - c) * (i - c) + (j - c) * (j - c)) / c;
+            float a = Mathf.Clamp01(1f - d); a = a * a * (3f - 2f * a);
+            return new Color32(255, 255, 255, (byte)(a * 255f));
+        }, true, TextureWrapMode.Clamp);
+        static Texture2D LavaCrustTexture() => SaveTexture("MGSUGE_Lave_Croute", 256, (i, j) =>
+        {
+            float n = 0f, a = 0.5f, f = 4f / 256f;
+            for (int o = 0; o < 4; o++) { n += a * Mathf.PerlinNoise(i * f * Mathf.Pow(2, o) + 31.7f * o, j * f * Mathf.Pow(2, o) + 11.3f * o); a *= 0.5f; }
+            float crust = Mathf.Clamp01((n - 0.42f) * 4f);
+            byte g = (byte)(255 * (1f - crust));
+            return new Color32(g, g, g, 255);
+        }, false, TextureWrapMode.Repeat);
+
         // ------------------------------------------------------------------ prefab du joueur
         static GameObject BuildPlayerPrefab(Data d)
         {
+            EnsureFolder(PrefabDir + "/Joueur");
+            // ancien emplacement (jalons 3-4) : deplace pour garder les references
+            string old = PrefabDir + "/MGSUGE_Player.prefab";
+            if (File.Exists(old) && !File.Exists(PlayerPrefab)) AssetDatabase.MoveAsset(old, PlayerPrefab);
             var model = AssetDatabase.LoadAssetAtPath<GameObject>(ModelPath);
-            var root = new GameObject("Joueur_Vesper");
+            var root = new GameObject("MGSUGE_Player");
             var visual = new GameObject("Visuel").transform; visual.SetParent(root.transform, false);
             var inst = (GameObject)PrefabUtility.InstantiatePrefab(model, visual);
             inst.name = "MGSUGE_Vesper";
@@ -305,85 +488,22 @@ namespace MGSUGE.EditorTools
             pc.frame = d.frame; pc.weaponData = d.weapons; pc.progression = d.progression; pc.world = d.world; pc.rig = rig; pc.input = input; pc.visual = visual;
             var lk = root.AddComponent<LockOn>(); lk.data = d.weapons; lk.player = pc;
             var wc = root.AddComponent<WeaponController>(); wc.data = d.weapons; wc.player = pc; wc.lockOn = lk; wc.rig = rig;
+            Transform F(string n) => MathX.FindDeep(inst.transform, n);
+            wc.muzzle = F("Muzzle"); wc.muzzleL = F("MuzzleL"); wc.podOut = F("PodOut"); wc.pod = F("MissilePod");
+            wc.blade = F("Blade"); wc.bladeGrip = F("BladeGrip"); wc.bladeEnergy = wc.blade != null ? MathX.FindDeep(wc.blade, "Blade_Energy") : null;
             var pr = root.AddComponent<ProbeController>(); pr.data = d.weapons; pr.player = pc; pr.lockOn = lk; pr.rig = rig;
-            var th = root.AddComponent<ThrusterFX>(); th.player = pc; th.model = inst.transform;
+            pr.probeSockets = new List<Transform>();
+            for (int i = 1; i <= 6; i++) { var t = F("Probe_" + i); if (t != null) pr.probeSockets.Add(t); }
+            var th = root.AddComponent<ThrusterFX>(); th.player = pc;
+            th.flames = new List<Transform>();
+            foreach (var t in inst.GetComponentsInChildren<Transform>(true)) if (t.name.StartsWith("Flame_")) th.flames.Add(t);
             var pa = root.AddComponent<PaletteApplier>(); pa.palette = d.player;
             var prefab = PrefabUtility.SaveAsPrefabAsset(root, PlayerPrefab);
             Object.DestroyImmediate(root);
             return prefab;
         }
 
-        // ------------------------------------------------------------------ scene World
-        static void BuildScene(Data d, Mats m, GameObject playerPrefab)
-        {
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-            RenderSettings.skybox = m["Sky"];
-
-            var gmGo = new GameObject("GameManager"); var gm = gmGo.AddComponent<GameManager>();
-
-            var sunGo = new GameObject("Lumiere_Soleil"); var sun = sunGo.AddComponent<Light>(); sun.type = LightType.Directional;
-            var fillGo = new GameObject("Lumiere_Remplissage"); var fill = fillGo.AddComponent<Light>(); fill.type = LightType.Directional;
-
-            var world = new GameObject("Monde");
-            var terrain = world.AddComponent<TerrainSystem>(); terrain.world = d.world; terrain.material = m["Terrain"];
-            var seaGo = new GameObject("Mer"); seaGo.transform.SetParent(world.transform, false);
-            var sea = seaGo.AddComponent<SeaSurface>(); sea.world = d.world; sea.material = m["Sea"];
-            var lavaGo = new GameObject("Lave"); lavaGo.transform.SetParent(world.transform, false);
-            var lava = lavaGo.AddComponent<LavaSurface>(); lava.world = d.world; lava.material = m["Lava"];
-            var arcoGo = new GameObject("Arcologie_Vesta"); arcoGo.transform.SetParent(world.transform, false);
-            var arco = arcoGo.AddComponent<Arcology>(); arco.world = d.world;
-            arco.structure = m["Structure"]; arco.structureLight = m["StructureLight"]; arco.accentOrange = m["AccentOrange"]; arco.accentRose = m["AccentRose"];
-            arco.beacon = m["Beacon"]; arco.redLight = m["RedLight"]; arco.platform = m["Platform"];
-            var skyGo = new GameObject("Ciel"); skyGo.transform.SetParent(world.transform, false);
-            var sky = skyGo.AddComponent<SkySystem>(); sky.world = d.world; sky.skybox = m["Sky"]; sky.planetMaterial = m["Planet"]; sky.moonMaterial = m["Moon"];
-            sky.ringMaterial = m["Ring"]; sky.starMaterial = m["Stars"]; sky.sun = sun; sky.fill = fill;
-
-            var volGo = new GameObject("Volume_Global"); var vol = volGo.AddComponent<Volume>(); vol.isGlobal = true;
-            string profPath = Root + "/Data/MGSUGE_PostProcess.asset";
-            var prof = AssetDatabase.LoadAssetAtPath<VolumeProfile>(profPath);
-            if (prof == null)
-            {
-                prof = ScriptableObject.CreateInstance<VolumeProfile>(); AssetDatabase.CreateAsset(prof, profPath);
-                var tmap = prof.Add<Tonemapping>(true); tmap.mode.Override(TonemappingMode.ACES);
-                var bloom = prof.Add<Bloom>(true); bloom.intensity.Override(0.7f); bloom.threshold.Override(1.0f);
-                foreach (var c in prof.components) { c.name = c.GetType().Name; AssetDatabase.AddObjectToAsset(c, prof); }
-                AssetDatabase.SaveAssets();
-            }
-            vol.sharedProfile = prof;
-
-            var fxGo = new GameObject("FX");
-            var fx = fxGo.AddComponent<FxSystem>(); fx.particleMaterial = m["Particles"]; fx.flashMaterial = m["Flash"]; fx.beamMaterial = m["Beam"];
-            var proj = fxGo.AddComponent<ProjectileSystem>(); proj.data = d.weapons; proj.material = m["Projectile"];
-            var mis = fxGo.AddComponent<MissileSystem>(); mis.data = d.weapons; mis.bodyMaterial = m["MissileBody"]; mis.trailMaterial = m["Trail"];
-            fxGo.AddComponent<SfxSystem>();
-
-            var player = (GameObject)PrefabUtility.InstantiatePrefab(playerPrefab);
-            player.transform.position = d.world.heliosPosition + Vector3.up * (d.frame.frameClear + 0.5f);
-            var pc = player.GetComponent<PlayerController>();
-
-            var camGo = new GameObject("Camera"); camGo.tag = "MainCamera";
-            var cam = camGo.AddComponent<Camera>(); camGo.AddComponent<AudioListener>();
-            cam.GetUniversalAdditionalCameraData().renderPostProcessing = true;
-            var rig = camGo.AddComponent<CameraRig>(); rig.data = d.cam; rig.player = pc; rig.cam = cam;
-            camGo.transform.position = player.transform.position + new Vector3(3f, 2f, -21f);
-            pc.cam = rig;
-            gm.player = pc;
-            EditorUtility.SetDirty(pc);
-            PrefabUtility.RecordPrefabInstancePropertyModifications(pc);
-
-            var hudGo = new GameObject("HUD"); var hud = hudGo.AddComponent<Hud>();
-            hud.player = pc; hud.weapons = player.GetComponent<WeaponController>(); hud.probes = player.GetComponent<ProbeController>(); hud.lockOn = player.GetComponent<LockOn>(); hud.world = d.world;
-
-            var range = new GameObject("Terrain_Essai").AddComponent<TestRange>();
-            range.weaponData = d.weapons; range.world = d.world; range.sentinelMaterial = m["Sentinel"]; range.relayMaterial = m["Relay"]; range.relayRingMaterial = m["RelayRing"];
-            range.frameModel = AssetDatabase.LoadAssetAtPath<GameObject>(ModelPath); range.hostilePalette = d.corbeau; range.poses = d.poses; range.frameClear = d.frame.frameClear;
-
-            EditorSceneManager.SaveScene(scene, ScenePath);
-            var list = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
-            if (!list.Exists(s => s.path == ScenePath)) list.Insert(0, new EditorBuildSettingsScene(ScenePath, true));
-            EditorBuildSettings.scenes = list.ToArray();
-        }
-
+        // ------------------------------------------------------------------ outils
         static void EnsureFolder(string path)
         {
             if (AssetDatabase.IsValidFolder(path)) return;
@@ -391,5 +511,39 @@ namespace MGSUGE.EditorTools
             EnsureFolder(parent);
             AssetDatabase.CreateFolder(parent, leaf);
         }
+        /// <summary>Cree un objet vide range sous parent.</summary>
+        static Transform Group(string name, Transform parent = null, Vector3 pos = default)
+        {
+            var go = new GameObject(name); if (parent != null) go.transform.SetParent(parent, false);
+            go.transform.localPosition = pos; return go.transform;
+        }
+        /// <summary>Objet visible : maillage + materiau (+ collision optionnelle), echelle et rotation locales.</summary>
+        static GameObject Part(string name, Transform parent, Mesh mesh, Material mat, Vector3 pos, Vector3 scale, Quaternion rot, bool meshCollider = false, int layer = 0, bool shadows = true)
+        {
+            var go = new GameObject(name); go.layer = layer;
+            go.transform.SetParent(parent, false); go.transform.localPosition = pos; go.transform.localRotation = rot; go.transform.localScale = scale;
+            go.AddComponent<MeshFilter>().sharedMesh = mesh;
+            var mr = go.AddComponent<MeshRenderer>(); mr.sharedMaterial = mat;
+            if (!shadows) { mr.shadowCastingMode = ShadowCastingMode.Off; }
+            if (meshCollider) go.AddComponent<MeshCollider>().sharedMesh = mesh;
+            return go;
+        }
+        static void SetLayer(GameObject go, int layer) { foreach (var t in go.GetComponentsInChildren<Transform>(true)) t.gameObject.layer = layer; }
+        static GameObject Instance(GameObject prefab, Transform parent, Vector3 worldPos, Quaternion rot, string name = null)
+        {
+            var go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, parent);
+            go.transform.SetPositionAndRotation(worldPos, rot);
+            if (name != null) go.name = name;
+            Rec(go);
+            return go;
+        }
+        /// <summary>Enregistre les modifications faites par script sur une instance de prefab (sinon perdues a la sauvegarde).</summary>
+        static void Rec(GameObject go)
+        {
+            if (go == null || !PrefabUtility.IsPartOfPrefabInstance(go)) return;
+            PrefabUtility.RecordPrefabInstancePropertyModifications(go);
+            PrefabUtility.RecordPrefabInstancePropertyModifications(go.transform);
+        }
+        static void Deactivate(GameObject go) { go.SetActive(false); Rec(go); }
     }
 }

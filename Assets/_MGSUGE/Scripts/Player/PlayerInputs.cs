@@ -7,7 +7,9 @@ namespace MGSUGE
     public enum Cmd
     {
         Jump, Down, Boost, QuickBoost, AssaultBoost, Transform, Fire, Missiles, Salvo, Frag, Blade, NextTarget, Repair,
-        Arcane, Domain, Pause, Upgrades, Commands, MapZoom, Mute
+        Arcane, Domain, Pause, Upgrades, Commands, MapZoom, Mute,
+        /// <summary>Entree : lance le mode normal depuis l'ecran titre (§8).</summary>
+        Start
     }
 
     /// <summary>Source des entrees : Input System (si le package est installe) ou ancien Input Manager (repli).</summary>
@@ -39,7 +41,7 @@ namespace MGSUGE
         public Cmd AssaultBoost => Cmd.AssaultBoost; public Cmd TransformKey => Cmd.Transform; public Cmd Fire => Cmd.Fire; public Cmd Missiles => Cmd.Missiles;
         public Cmd Salvo => Cmd.Salvo; public Cmd Frag => Cmd.Frag; public Cmd Blade => Cmd.Blade; public Cmd NextTarget => Cmd.NextTarget;
         public Cmd Repair => Cmd.Repair; public Cmd Arcane => Cmd.Arcane; public Cmd Domain => Cmd.Domain; public Cmd Pause => Cmd.Pause;
-        public Cmd Upgrades => Cmd.Upgrades; public Cmd Commands => Cmd.Commands; public Cmd MapZoom => Cmd.MapZoom; public Cmd Mute => Cmd.Mute;
+        public Cmd Upgrades => Cmd.Upgrades; public Cmd Commands => Cmd.Commands; public Cmd MapZoom => Cmd.MapZoom; public Cmd Mute => Cmd.Mute; public Cmd StartKey => Cmd.Start;
 
         void Awake()
         {
@@ -95,6 +97,7 @@ namespace MGSUGE
                 case Cmd.Upgrades: return new[] { KeyCode.U };
                 case Cmd.Commands: return new[] { KeyCode.K };
                 case Cmd.MapZoom: return new[] { KeyCode.M };
+                case Cmd.Start: return new[] { KeyCode.Return, KeyCode.KeypadEnter };
                 default: return new[] { KeyCode.N };
             }
         }

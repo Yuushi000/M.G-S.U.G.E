@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1ca936391e77f46a8a2ebe4b2524a2, type: 3}
+  m_Name: MGSUGE_Ennemi_Tourelle
+  m_EditorClassIdentifier: MGSUGE::MGSUGE.TurretData
+  displayName: "Tourelle de d\xE9fense"
+  credits: 250
+  maxHP: 1800
+  radius: 4.6
+  impactMax: 0
+  missileTarget: 1
+  aggroRange: 750
+  contractAggroRange: 950
+  disengageFactor: 1.6
+  hideDistance: 3200
+  patrolRadius: 60
+  patrolSpeed: 12
+  shotColor: {r: 1, g: 0.45, b: 0.2, a: 1}
+  shotLength: 6
+  shotExtraRadius: 0
+  turnSpeed: 140
+  fireAngle: 12
+  burstCount: 4
+  shotSpeed: 330
+  shotDamage: 190
+  burstInterval: 0.16
+  burstPause: {x: 2.2, y: 3}
+  shotRange: 680
+  shotSpread: 0.012
+  lead: 1

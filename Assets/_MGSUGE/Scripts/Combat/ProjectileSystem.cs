@@ -10,8 +10,9 @@ namespace MGSUGE
     public class ProjectileSystem : MonoBehaviour
     {
         public static ProjectileSystem I { get; private set; }
-        public WeaponData data;
-        public Material material;
+        [Tooltip("tailles de pool et parametres des armes")] public WeaponData data;
+        [Tooltip("prefab d'un tir (fuseau lumineux additif) ; la couleur est donnee par tir")] public GameObject projectilePrefab;
+        [Tooltip("parent des copies creees au lancement (par defaut cet objet)")] public Transform poolParent;
         [Tooltip("rayon de touche du joueur : 4,2 m en chassis, 3,6 m en vaisseau (§10.1)")] public float playerHitMech = 4.2f, playerHitShip = 3.6f;
 
         class P
@@ -20,22 +21,23 @@ namespace MGSUGE
             public bool fromPlayer; public Color color; public Transform t; public Renderer r;
         }
         readonly List<P> pool = new List<P>();
-        Mesh mesh; MaterialPropertyBlock mpb;
+        MaterialPropertyBlock mpb;
         public int ActiveCount { get; private set; }
         /// <summary>Statistiques (diagnostic) : tirs du joueur par issue.</summary>
-        public int statFired, statTargets, statWorld, statGround, statExpired; public string statLastWorld = "";
+        public int statFired, statTargets, statWorld, statGround, statExpired, statEnemyFired, statEnemyHits; public string statLastWorld = "";
 
         void Awake()
         {
             I = this; mpb = new MaterialPropertyBlock();
-            mesh = MeshKit.Spindle(0.28f, 1f, 6);
+            if (projectilePrefab == null) { Debug.LogError("[MGSUGE] ProjectileSystem : prefab de tir non assigne."); return; }
+            var parent = poolParent != null ? poolParent : transform;
             int n = data != null ? data.projectilePool : 700;
             for (int i = 0; i < n; i++)
             {
-                var go = MeshKit.Spawn("Tir", mesh, material, transform, Vector3.zero, Quaternion.identity);
-                var r = go.GetComponent<Renderer>(); r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; r.receiveShadows = false;
+                var go = Instantiate(projectilePrefab, parent);
+                go.name = projectilePrefab.name;
                 go.SetActive(false);
-                pool.Add(new P { t = go.transform, r = r });
+                pool.Add(new P { t = go.transform, r = go.GetComponentInChildren<Renderer>() });
             }
         }
 
@@ -44,12 +46,12 @@ namespace MGSUGE
             P p = null;
             foreach (var x in pool) if (!x.active) { p = x; break; }
             if (p == null) return false;
-            if (fromPlayer) statFired++;
+            if (fromPlayer) statFired++; else statEnemyFired++;
             p.active = true; p.pos = pos; p.vel = vel; p.damage = damage; p.impact = impact; p.life = life; p.length = length;
             p.color = color; p.fromPlayer = fromPlayer; p.extraRadius = extraRadius;
             p.t.gameObject.SetActive(true);
             p.t.localScale = new Vector3(1f, 1f, length);
-            p.r.GetPropertyBlock(mpb); mpb.SetColor("_BaseColor", color * 2.5f); p.r.SetPropertyBlock(mpb);
+            if (p.r != null) { p.r.GetPropertyBlock(mpb); mpb.SetColor("_BaseColor", color * 2.5f); p.r.SetPropertyBlock(mpb); }
             Place(p);
             return true;
         }
@@ -96,6 +98,7 @@ namespace MGSUGE
                     if (MathX.SegmentDistance(a, b, player.Center) < rad)
                     {
                         player.TakeDamage(new DamageInfo { amount = p.damage, impact = p.impact, point = player.Center, direction = p.vel.normalized, fromPlayer = false, source = this });
+                        statEnemyHits++;
                         Fx.Hit(player.Center, p.color); done = true;
                     }
                 }

@@ -20,7 +20,15 @@ namespace MGSUGE
         public float BladeArcTime { get; private set; } = -9f;
         public bool BladeAvailable => bladeCd <= 0f;
 
-        Transform muzzle, muzzleL, podOut, pod, blade, bladeGrip, bladeEnergy, bladeHome;
+        [Header("Points d'attache du modele (assignes par le constructeur)")]
+        [Tooltip("bouche du fusil (main droite)")] public Transform muzzle;
+        [Tooltip("bouche alternee en vaisseau")] public Transform muzzleL;
+        [Tooltip("sortie des missiles de la nacelle")] public Transform podOut;
+        [Tooltip("nacelle de missiles")] public Transform pod;
+        [Tooltip("sabre (piece qui passe de la hanche a la main)")] public Transform blade;
+        [Tooltip("prise du sabre dans la main")] public Transform bladeGrip;
+        [Tooltip("lame d'energie (allumee pendant la frappe)")] public Transform bladeEnergy;
+        Transform bladeHome;
         Vector3 bladeHomePos; Quaternion bladeHomeRot; Vector3 bladeHomeScale;
         bool altMuzzle;
         float salvoTimer; int salvoIdx; List<Targetable> salvoTargets = new List<Targetable>();
@@ -33,15 +41,11 @@ namespace MGSUGE
 
         void Start()
         {
-            if (rig == null) return;
-            muzzle = rig.Find("Muzzle"); muzzleL = rig.Find("MuzzleL"); podOut = rig.Find("PodOut"); pod = rig.Find("MissilePod");
-            blade = rig.Find("Blade"); bladeGrip = rig.Find("BladeGrip");
             if (blade != null)
             {
                 bladeHome = blade.parent; bladeHomePos = blade.localPosition; bladeHomeRot = blade.localRotation; bladeHomeScale = blade.localScale;
-                bladeEnergy = MathX.FindDeep(blade, "Blade_Energy");
-                if (bladeEnergy != null) bladeEnergy.gameObject.SetActive(false);
             }
+            if (bladeEnergy != null) bladeEnergy.gameObject.SetActive(false);
         }
 
         void Update()

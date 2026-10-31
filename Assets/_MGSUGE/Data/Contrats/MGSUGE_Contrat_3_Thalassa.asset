@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db48375fe360a9146af98f7817ff7026, type: 3}
+  m_Name: MGSUGE_Contrat_3_Thalassa
+  m_EditorClassIdentifier: MGSUGE::MGSUGE.ContractData
+  title: "Pillards de l'\xE9pave Thalassa"
+  location: "\xC9pave"
+  description: "Deux ch\xE2ssis pillent la coque du Thalassa sous la couverture de tourelles et de sentinelles."
+  reward: 3200
+  enemiesNote: "2 ch\xE2ssis, tourelles sur la coque, 5 sentinelles"

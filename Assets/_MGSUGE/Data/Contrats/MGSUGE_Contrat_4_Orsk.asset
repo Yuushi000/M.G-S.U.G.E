@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db48375fe360a9146af98f7817ff7026, type: 3}
+  m_Name: MGSUGE_Contrat_4_Orsk
+  m_EditorClassIdentifier: MGSUGE::MGSUGE.ContractData
+  title: Raffinerie d'Orsk
+  location: Raffinerie
+  description: "Des araign\xE9es de si\xE8ge pilonnent la raffinerie depuis le sol, couvertes par une escadrille de chasseurs."
+  reward: 3400
+  enemiesNote: "2 araign\xE9es de si\xE8ge, 2 relais, 3 chasseurs"
